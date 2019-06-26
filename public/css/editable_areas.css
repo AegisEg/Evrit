@@ -1,0 +1,55 @@
+.editable-area:hover,
+.editable-area:focus {
+    outline: 1px solid #666;
+}
+
+.editable-area {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    min-width: 100%;
+    min-height: 30px;
+}
+
+.editable-area-panel {
+    display: none;
+    position: absolute;
+    top: -35px;
+    right: 0;
+    background: #888;
+    padding: 5px;
+    z-index: 20000;
+    height: 35px;
+    box-shadow: 0 0px 4px rgba(0, 0, 0, 0.3);
+}
+
+.editable-area:hover .editable-area-panel {
+    display: block;
+}
+
+.editable-area-panel-button {
+    font-weight: normal !important;
+    color: #fff;
+    border: 1px solid transparent;
+    background: transparent;
+    border-radius: 2px;
+    display: inline-block;
+    font-size: 13px;
+    padding: 6px 10px;
+    cursor: pointer;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+    user-select: none;
+    vertical-align: top;
+    white-space: nowrap;
+    line-height: 1;
+}
+
+.editable-area-panel-button:hover,
+.editable-area-panel-button:focus {
+    background: #8f8f8f;
+    border-color: #666;
+}
+
+.editable-area-panel-button:active {
+    background: #666;
+}
