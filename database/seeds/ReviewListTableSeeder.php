@@ -116,6 +116,15 @@ class ReviewListTableSeeder extends Seeder
                 'created_at' => NULL,
                 'updated_at' => NULL,
             ),
+            11 => 
+            array (
+                'id' => 50,
+                'user_id' => 3,
+                'user2_id' => 12,
+                'chek' => 0,
+                'created_at' => NULL,
+                'updated_at' => NULL,
+            ),
         ));
         
         

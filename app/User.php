@@ -42,12 +42,16 @@ class User extends Authenticatable
   }
   public function gallery()
   {
-      return $this->hasMany('App\Model\UserImage','user_id','id')->with('comments');
-  }  
+    return $this->hasMany('App\Model\UserImage', 'user_id', 'id')->with('comments');
+  }
+  public function messages($channel)
+  {
+    return $this->hasMany('App\Model\Message', 'user_id', 'id')->where('parent_id',$channel);
+  }
   public function likes_image()
   {
     return $this->belongsToMany('App\Model\UserImage', 'user_to_like', 'user_id', 'image_id');
-  } 
+  }
   public function professionRel()
   {
     return $this->belongsTo('App\Model\Profession', 'profession', 'id');
@@ -70,7 +74,10 @@ class User extends Authenticatable
   {
     return $this->belongsToMany('App\Model\Language', 'language_user', 'user_id', 'language_id');
   }
-
+  public function channels()
+  {
+    return $this->belongsToMany('App\Model\Channel', 'user_to_channel', 'user_id', 'channel_id')->with('users','messages');
+  }
   public function userFriend($value) // связь между юзером один и юзером 2
   {
     return $this->belongsToMany('App\User', 'friends_list', 'user_id', 'user2_id');
@@ -190,6 +197,10 @@ class User extends Authenticatable
     if ($value !== null)
       return ['key' => $value, 'value' => self::$color_hair[$value]];
     else return $value;
+  }
+  public function getAvatarAttribute($value)
+  {
+    return "/".$value;
   }
 
   public function getColorEyeAttribute($value)

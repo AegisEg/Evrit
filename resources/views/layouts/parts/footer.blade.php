@@ -46,3 +46,10 @@
     </div>
     @endif
 @endif
+<?php
+// $tables = DB::select('SHOW TABLES');
+// foreach($tables as $table)
+// {
+//      echo ",".$table->Tables_in_saggar;
+// }
+?>

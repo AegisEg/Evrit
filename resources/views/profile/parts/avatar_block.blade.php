@@ -1,4 +1,4 @@
-<img src="/{{$data->avatar}}" id="avatar_profile" class="w-100" alt="">
+<img src="{{$data->avatar}}" id="avatar_profile" class="w-100" alt="">
 @if($owner)
 <form id="edit_avatar_form">
     <input type="file" id="edit_avatar" name="avatar_image" accept="image/x-png,image/gif,image/jpeg" hidden>

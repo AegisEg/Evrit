@@ -219,4 +219,27 @@ $(function() {
             });
         }
     });
+    ///Chat Script
+    $('.contacts>.tabs_chat').click(function() {
+        $this = $(this);
+        $('.contacts>.tabs_chat').removeClass('active');
+        $this.addClass('active');
+        $(".chat_panel>.card").removeClass('active');
+        $(".chat_panel>.card#" + $this.data('id')).addClass('active');
+    });
+    $(".chat_form").submit(function(e) {
+        e.preventDefault();
+        $this = $(this);
+        var formdata = new FormData();
+        formdata = $this.serializeArray();
+        formdata.push({ name: 'key', value: $this.data('key') });
+        $.ajax({
+            url: "/send-message",
+            method: "POST",
+            data: formdata,
+            success: function(responce) {
+                $this[0].reset();
+            }
+        });
+    });
 });

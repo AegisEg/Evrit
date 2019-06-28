@@ -25,7 +25,6 @@ Route::get('/profile', 'ProfileController@myprofile')->name('profile.myprofile')
 Route::post('/profile/edit', 'ProfileController@edit')->name('profile.edit');
 Route::post('/profile/avatar_save', 'GalleryController@avatar_save')->name('profile.avatar_save');
 Route::post('/profile/image_save', 'GalleryController@add_image')->name('profile.image_save');
-Route::get('/messages', 'MessageController@index')->name('messages.index');
 Route::get('/friends', 'ProfileController@friendPage')->name('profile.friend');
 Route::get('/guest', 'ProfileController@guestPage')->name('profile.guest');
 Route::get('/profile/{id}/add-friend', 'FriendController@addFriend')->name('profile.add_friend');
@@ -43,3 +42,7 @@ Route::post('/search', 'HomeController@search');
 //Черный список
 Route::post('/toblacklist', 'FriendController@ToBlacklist')->name('toblacklist');
 Route::get('/blacklist', 'ProfileController@blacklistpage')->name('blacklistpage');
+//Меседжер
+Route::get('/messages', 'MessageController@index')->name('messages.index');
+
+Route::post('/send-message', 'MessageController@send_message')->name('send_message');

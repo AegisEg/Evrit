@@ -33,5 +33,8 @@ class DatabaseSeeder extends Seeder
         $this->call(TargetTableSeeder::class);
         $this->call(UserImagesTableSeeder::class);
         $this->call(UserToLikeTableSeeder::class);
+        $this->call(ChannelsTableSeeder::class);
+        $this->call(MessagesTableSeeder::class);
+        $this->call(UserToChannelTableSeeder::class);
     }
 }

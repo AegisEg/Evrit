@@ -6,7 +6,7 @@
                     @foreach ($last_users as $user)
                     <div class="col-3">
                         <a href="{{route('profile.show',['id'=>$user->id])}}" class="stretched-link"></a>
-                        <img src="/{{$user->avatar}}" class="w-100" alt="">
+                        <img src="{{$user->avatar}}" class="w-100" alt="">
                     </div>
                     @endforeach
 
