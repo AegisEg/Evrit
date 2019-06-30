@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="44.7146mm" height="42.5979mm"
+ xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"  version="1.2" baseProfile="tiny">
+<desc>Created by EvoPdf</desc>
+<defs>
+</defs>
+<g fill="none" stroke="black" stroke-width="1" fill-rule="evenodd" stroke-linecap="square" stroke-linejoin="bevel" >
+
+<g fill="#000000" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="2" transform="matrix(1,0,0,1,0,0)"
+>
+</g>
+
+<g fill="#000000" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="2" transform="matrix(1,0,0,1,0,0)"
+>
+</g>
+
+<g fill="#000000" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="2" transform="matrix(1,0,0,1,0,0)"
+>
+</g>
+
+<g fill="#000000" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="2" transform="matrix(1,0,0,1,0,0)"
+>
+</g>
+
+<g fill="#000000" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="2" transform="matrix(1,0,0,1,8,8)"
+>
+</g>
+
+<g fill="#000000" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="2" transform="matrix(1,0,0,1,8,8)"
+>
+</g>
+
+<g fill="#ffffff" fill-opacity="1" stroke="none" transform="matrix(1,0,0,1,8,8)"
+>
+<path vector-effect="none" fill-rule="nonzero" d="M139.1,25.4 L138.4,26.1 C151.8,40.4 160,59.5 160,80.5 C160,124.3 124.3,160 80.5,160 C59.5,160 40.4,151.8 26.1,138.4 L25.4,139.1 C39.8,152.7 59.2,161 80.5,161 C124.9,161 161,124.9 161,80.5 C161,59.2 152.7,39.8 139.1,25.4 L139.1,25.4 M1,80.5 C1,36.7 36.7,1 80.5,1 C101.5,1 120.6,9.2 134.9,22.6 L135.6,21.9 C121.2,8.3 101.8,0 80.5,0 C36.1,0 0,36.1 0,80.5 C0,101.8 8.3,121.2 21.9,135.6 L22.6,134.9 C9.2,120.6 1,101.5 1,80.5 "/>
+</g>
+
+<g fill="#000000" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="2" transform="matrix(1,0,0,1,8,8)"
+>
+</g>
+
+<g fill="#ffffff" fill-opacity="1" stroke="none" transform="matrix(1,0,0,1,8,8)"
+>
+<path vector-effect="none" fill-rule="nonzero" d="M134.9,22.6 L22.6,134.9 C23.7,136.1 24.9,137.3 26.1,138.4 L138.4,26.1 C137.3,24.9 136.1,23.7 134.9,22.6 "/>
+</g>
+
+<g fill="#000000" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="2" transform="matrix(1,0,0,1,8,8)"
+>
+</g>
+
+<g fill="#ffffff" fill-opacity="1" stroke="none" transform="matrix(1,0,0,1,8,8)"
+>
+<path vector-effect="none" fill-rule="nonzero" d="M22.6,134.9 L21.9,135.6 C23,136.8 24.2,138 25.4,139.1 L26.1,138.4 C24.9,137.3 23.7,136.1 22.6,134.9 M138.4,26.1 L139.1,25.4 C138,24.2 136.8,23 135.6,21.9 L134.9,22.6 C136.1,23.7 137.3,24.9 138.4,26.1 "/>
+</g>
+
+<g fill="#000000" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="2" transform="matrix(1,0,0,1,8,8)"
+>
+</g>
+
+<g fill="#ebd165" fill-opacity="1" stroke="none" transform="matrix(1,0,0,1,8,8)"
+>
+<path vector-effect="none" fill-rule="nonzero" d="M65.8,104.4 L58.5,111.7 C58.5,113.7 58.4,115.8 58.5,117.8 C58.6,120.3 60.2,121.8 62.4,121.7 C64.6,121.7 66,120.2 66.1,117.8 C66.2,113.7 66.1,109.6 66.2,105.5 C66.2,105 66.1,104.6 65.8,104.4 M49.8,120.4 C50.5,121.3 51.5,121.8 52.8,121.8 C55,121.8 56.4,120.4 56.5,117.9 L56.5,113.6 L49.8,120.4 M40.3,80.4 C42,80.9 42.8,81.7 42.6,83.6 C42.5,84.2 42.6,84.8 42.7,85.3 C42.9,86.3 43.6,87 44.6,87.1 C45.7,87.1 45.5,86.1 45.7,85.4 C46,84.2 46.5,83 45.4,81.7 C44.8,80.9 44.9,79.5 45.9,79 C48,77.9 48,76 48.4,74.2 C48.9,72.3 49.4,70.3 49.8,68.4 C50.6,65.2 50.6,65.2 47.2,65.2 C43.1,65.2 42.7,65.5 42.6,69.5 C42.6,70.7 42,71.5 41.2,72.3 C40.4,73 39.7,73.8 38.9,74.6 C36.2,77.3 36.5,79.2 40.3,80.4 L40.3,80.4 M69.1,65.1 C68.2,65 67.3,65.1 66.3,65.1 C64.9,65 64.5,65.4 64.8,66.8 C65.7,70.1 65.9,73.7 67.4,76.7 C68.4,78.6 69.6,80.2 69.5,82.2 L76.6,75.1 C75.7,74.1 74.8,73.2 73.8,72.3 C72.5,71.1 71.5,69.8 71.6,67.8 C72,66.1 70.8,65.2 69.1,65.1 L69.1,65.1 M65.3,77 C65.3,73.3 63.7,69.7 62.9,66 C62.6,64.7 61.9,64.1 60.8,63.9 C59.9,63.8 59,63.6 58.1,63.5 C53.7,63.3 52.8,63.9 51.8,68.2 C51.2,70.6 50.6,73.1 50,75.5 C49.7,76.9 49.1,78.3 50.2,79.8 C50.8,80.7 50.4,81.9 49.4,82.4 C48.1,83.1 47.9,84.3 47.6,85.5 C46.5,90.2 45.4,94.9 44.1,99.6 C43.5,101.7 44.2,102.2 46.2,102.1 C47.4,102.1 48.7,102 49.9,102 L67.3,84.6 C66.2,82.1 65.3,79.9 65.3,77 M106,45.8 C105.2,45.5 104.4,45.4 103.5,45.4 C98.8,45.4 94.9,49.3 94.9,54 C94.9,54.9 95,55.7 95.3,56.5 L106,45.8 M57.2,62.7 C62.5,63 66.1,58.9 66.2,52.5 C70.5,52.8 71.8,51.9 71.8,48.5 C70.9,49.6 70.1,50.8 68.5,50.5 C66.1,50 66,48.2 66.5,46.4 C68.1,41.1 63.1,38.9 59.5,39.4 C58.3,39.6 57.3,40.2 56.6,41.2 C55.3,43.1 55.6,43.9 57.9,44 C59.5,44.1 60.8,44.6 61.8,46.6 C58.7,45.4 55.9,45.2 53.2,46.7 C50.4,48.3 49,50.7 48.8,53.8 C48.6,58.4 52.4,62.4 57.2,62.7 L57.2,62.7 M111.5,82.3 C110.8,81.8 110.4,80.8 110.9,80 C112.2,78.2 111.3,76.5 110.9,74.8 C110.2,72 109.4,69.1 108.9,66.3 C108.6,64.8 107.9,64.1 106.5,64 L106.4,64 L96.2,74 C96.1,74.4 96,74.9 95.9,75.3 C95.5,76.8 94.9,78.2 95.9,79.8 C96.5,80.7 96.1,81.8 95.2,82.5 C92.5,84.6 93.1,87.5 93,90.3 C93,91.5 94,91.2 94.7,91.2 L112.3,91.2 C113.6,91.2 114.2,90.8 114,89.5 C113.7,86.9 114.1,84.1 111.5,82.3 L111.5,82.3 M112.1,94.9 C112.1,93.7 111.8,93.2 110.5,93.1 C104.4,92.8 104.4,92.7 104.4,98.8 L104.4,117.3 C104.4,120.1 105.6,121.6 107.8,121.8 C110.2,122 112,120.4 112.1,117.7 C112.2,113.9 112.1,110 112.1,106.2 L112.1,94.9 L112.1,94.9 M71,99.2 L68.1,102.1 L69.6,102.1 C71.3,102.1 71.6,101.6 71.2,100.1 C71.1,99.8 71.1,99.5 71,99.2 M119.7,72.1 C118.4,70.9 117.6,69.7 117.7,67.8 C117.8,65.7 116.6,65.1 113.6,65.1 C110.5,65.1 110.5,65.1 111.2,68 C111.8,70.4 112.3,72.9 112.9,75.3 C113.2,76.6 113.4,78 115,78.7 C116.1,79.2 116.3,80.7 115.7,81.6 C114.7,82.9 115,84.1 115.4,85.3 C115.6,85.9 115.5,86.8 116.3,86.9 C117.1,86.9 117.5,86.1 117.8,85.4 C117.9,85.2 117.9,85.1 117.9,84.9 C117.2,81.7 119.2,80.8 121.7,80.1 C124.4,79.3 124.8,77.3 122.9,75.1 C121.7,74 120.7,73 119.7,72.1 L119.7,72.1 M100.5,93.1 C94.8,93.1 94.8,93 94.8,98.7 L94.8,117 C94.8,120.2 96.1,121.8 98.6,121.9 C101.1,121.9 102.5,120.2 102.5,116.9 L102.5,106.4 C102.5,102.7 102.4,99 102.5,95.4 C102.6,93.7 102.2,93.1 100.5,93.1 L100.5,93.1 M91.9,78.7 C93,78.1 93.5,77.3 93.7,76.4 L88.3,81.8 C88.4,82.1 88.4,82.4 88.4,82.8 C88.3,83.6 88.3,84.5 88.5,85.3 C88.7,86.3 89.3,87 90.4,87 C91.5,87.1 91.3,86 91.5,85.4 C91.9,84.1 92.2,82.9 91.2,81.6 C90.6,80.7 90.9,79.3 91.9,78.7 L91.9,78.7"/>
+</g>
+
+<g fill="#000000" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="2" transform="matrix(1,0,0,1,8,8)"
+>
+</g>
+
+<g fill="#000000" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="2" transform="matrix(1,0,0,1,8,8)"
+>
+</g>
+
+<g fill="#000000" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="2" transform="matrix(1,0,0,1,8,8)"
+>
+</g>
+
+<g fill="#000000" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="2" transform="matrix(1,0,0,1,0,0)"
+>
+</g>
+
+<g fill="#000000" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="2" transform="matrix(1,0,0,1,0,0)"
+>
+</g>
+
+<g fill="#000000" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="2" transform="matrix(1,0,0,1,0,0)"
+>
+</g>
+
+<g fill="#000000" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="2" transform="matrix(1,0,0,1,0,0)"
+>
+</g>
+
+<g fill="#000000" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="2" transform="matrix(1,0,0,1,0,0)"
+>
+</g>
+
+<g fill="#000000" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="2" transform="matrix(1,0,0,1,0,0)"
+>
+</g>
+</g>
+</svg>
