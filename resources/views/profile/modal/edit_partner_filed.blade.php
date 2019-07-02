@@ -17,7 +17,7 @@
                         <select class="selectpicker" data-live-search="true" name="you_smoking">
                             <option value="null">Не выбранно</option>
                             @foreach($list_smoking as $key=>$smoking)
-                            <option value="{{$key}}" {{$data->you_smoking?$key==$data->you_smoking['key']?'selected':'':""}}>{{$smoking}}</option>
+                            <option value="{{$key}}" {{$data->you_smokingslug?$key==$data->you_smokingslug['key']?'selected':'':""}}>{{$smoking}}</option>
                             @endforeach
                         </select>
                     </label>
@@ -28,7 +28,7 @@
                         <select class="selectpicker" data-live-search="true" name="you_drink">
                             <option value="null">Не выбранно</option>
                             @foreach($list_drink as $key=>$drink)
-                            <option value="{{$key}}" {{$data->you_drink?$key==$data->you_drink['key']?'selected':'':""}}>{{$drink}}</option>
+                            <option value="{{$key}}" {{$data->you_drinkslug?$key==$data->you_drinkslug['key']?'selected':'':""}}>{{$drink}}</option>
                             @endforeach
                         </select>
                     </label>

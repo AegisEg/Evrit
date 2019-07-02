@@ -17,6 +17,7 @@ class CreateMessagesTable extends Migration
             $table->bigIncrements('id');
             $table->integer('parent_id');
             $table->integer('user_id');
+            $table->boolean('is_read')->nullable()->default(null);
             $table->string('text');
             $table->timestamps();
         });

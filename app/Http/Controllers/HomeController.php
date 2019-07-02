@@ -61,11 +61,12 @@ class HomeController extends Controller
             $profiles = $profiles->sortBy('created_at');
         } else
         if ($sortby == 'popular') {
-            // Лайки + кол-во друзей+кол-во просмотров
-            // foreach($profiles as $profile)
-            // {
-            //     $profile['popular']=$profile->gallery->summ('likes');
-            // }
+            $profiles=$profiles->sortBy(function ($profile, $key) {
+                $count_likes=0;
+                foreach($profile->gallery as $image)
+                    $count_likes+=$image->user_likes->count();                    
+                return count($profile->friendListToStatus("friend")->get())+$count_likes;
+              });
         }
         $count = $profiles->count();
         $profiles = $profiles->forPage($page, 12);

@@ -37,6 +37,7 @@
         </div>
     </div>
     @endforeach
+    @if($owner)
     <div class="col-3">
         <div class="position-relative">
             <img src="/images/add-icon-image.png" class="w-100" alt="">
@@ -77,4 +78,5 @@
             </div>
         </div>
     </div>
+    @endif
 </div>

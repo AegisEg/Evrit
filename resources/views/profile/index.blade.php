@@ -3,10 +3,10 @@
 
 <div class="container py-3">
     <div class="row">
-        <div class="col-12 col-sm-4 col-md-3 text-right">
+        <div class="col-12 col-sm-4 col-md-3  text-right">
             @include('profile.parts.avatar_block')
         </div>
-        <div class="col-12 col-sm-8 col-md-6">
+        <div class="col-12 col-sm-8 col-md-9 col-lg-6">
             @if(!$is_you_ignore)
             <ul class="nav nav-tabs" id="profile_tabs" role="tablist">
                 <li class="nav-item">
@@ -31,14 +31,14 @@
                     @if($data->soc_status_id)
                     <div class="row mx-0 row_field">
                         <div class="col-4">Статус:</div>
-                        <div class="col-8">{!!$data->soc_status_id!!}</div>
+                        <div class="col-8">{!!$data->socstatus!!}</div>
                     </div>
                     @endif
                     
-                    @if($data->orientation_id)
+                    @if($data->orientation_id !== null)
                     <div class="row mx-0 row_field">
                         <div class="col-4">В поисках:</div>
-                        <div class="col-8">{{$data->orientation_id['value']}}@if($data->start_age), {{$data->start_age}}-{{$data->last_age}} лет @endif</div>
+                        <div class="col-8">{{$data->orientation['value']}}@if($data->start_age), {{$data->start_age}}-{{$data->last_age}} лет @endif</div>
                     </div>
                     @endif
                     @if($data->city->name)
@@ -69,34 +69,34 @@
                             @endif
                         </div>
                     </div>
-                    @if(isset($data->i_sponsor))
+                    @if($data->i_sponsor !== null)
                     <div class="row mx-0 row_field">
                         <div class="col-4">Что я могу предложить:</div>
-                        <div class="col-8">{!!$data->i_sponsor['value']!!}</div>
+                        <div class="col-8">{!!$data->i_sponsorslug['value']!!}</div>
                     </div>
                     @endif
-                    @if(isset($data->you_sponsor))
+                    @if($data->you_sponsor !== null)
                     <div class="row mx-0 row_field">
                         <div class="col-4">Чего я ожидаю:</div>
-                        <div class="col-8">{!!$data->you_sponsor['value']!!}</div>
+                        <div class="col-8">{!!$data->you_sponsorslug['value']!!}</div>
                     </div>
                     @endif
-                    @if(isset($data->relationship_goal))
+                    @if($data->relationship_goal !== null)
                     <div class="row mx-0 row_field">
                         <div class="col-4">Цель знакомства:</div>
-                        <div class="col-8">{!!$data->relationship_goal['value']!!}</div>
+                        <div class="col-8">{!!$data->relationship_goalslug['value']!!}</div>
                     </div>
                     @endif
-                    @if($data->availability)
+                    @if($data->availability !== null)
                     <div class="row mx-0 row_field">
                         <div class="col-4">Доступен:</div>
-                        <div class="col-8">{!!$data->availability['value']!!}</div>
+                        <div class="col-8">{!!$data->availabilityslug['value']!!}</div>
                     </div>
                     @endif
-                    @if(isset($data->income_level))
+                    @if($data->income_level !== null)
                     <div class="row mx-0 row_field">
                         <div class="col-4">Доход:</div>
-                        <div class="col-8">{!!$data->income_level['value']!!}</div>
+                        <div class="col-8">{!!$data->income_levelslug['value']!!}</div>
                     </div>
                     @endif
                     @if($data->description)
@@ -141,16 +141,22 @@
                             @endif
                         </div>
                     </div>
-                    @if($data->education)
+                    @if($data->professionRel)
                     <div class="row mx-0 row_field">
-                        <div class="col-4">Образование:</div>
-                        <div class="col-8">{!!$data->education['value']!!}</div>
+                        <div class="col-4">Профессия:</div>
+                        <div class="col-8">{{$data->professionRel->name}}</div>
                     </div>
                     @endif
-                    @if($data->body_type)
+                    @if($data->education !== null)
+                    <div class="row mx-0 row_field">
+                        <div class="col-4">Образование:</div>
+                        <div class="col-8">{!!$data->educationslug['value']!!}</div>
+                    </div>
+                    @endif
+                    @if($data->body_type !== null)
                     <div class="row mx-0 row_field">
                         <div class="col-4">Телосложение:</div>
-                        <div class="col-8">{!!$data->body_type['value']!!}</div>
+                        <div class="col-8">{!!$data->body_typeslug['value']!!}</div>
                     </div>
                     @endif
                     @if($data->height)
@@ -159,16 +165,16 @@
                         <div class="col-8">{{$data->height}}</div>
                     </div>
                     @endif
-                    @if($data->color_hair)
+                    @if($data->color_hair !== null)
                     <div class="row mx-0 row_field">
                         <div class="col-4">Цвет волос:</div>
-                        <div class="col-8">{!!$data->color_hair['value']!!}</div>
+                        <div class="col-8">{!!$data->color_hairslug['value']!!}</div>
                     </div>
                     @endif
-                    @if($data->color_eye)
+                    @if($data->color_eye !== null)
                     <div class="row mx-0 row_field">
                         <div class="col-4">Цвет глаз:</div>
-                        <div class="col-8">{!!$data->color_eye['value']!!}</div>
+                        <div class="col-8">{!!$data->color_eyeslug['value']!!}</div>
                     </div>
                     @endif
                     @if($data->religionRel)
@@ -177,28 +183,28 @@
                         <div class="col-8">{{$data->religionRel->name}}</div>
                     </div>
                     @endif
-                    @if($data->marital_status)
+                    @if($data->marital_status !== null)
                     <div class="row mx-0 row_field">
                         <div class="col-4">Семейное положение:</div>
-                        <div class="col-8">{!!$data->marital_status['value']!!}</div>
+                        <div class="col-8">{!!$data->marital_statusslug['value']!!}</div>
                     </div>
                     @endif
-                    @if($data->smoking)
+                    @if($data->smoking !== null)
                     <div class="row mx-0 row_field">
                         <div class="col-4">Курение:</div>
-                        <div class="col-8">{!!$data->smoking['value']!!}</div>
+                        <div class="col-8">{!!$data->smokingslug['value']!!}</div>
                     </div>
                     @endif
-                    @if($data->drink)
+                    @if($data->drink !== null)
                     <div class="row mx-0 row_field">
                         <div class="col-4">Алкоголь:</div>
-                        <div class="col-8">{!!$data->drink['value']!!}</div>
+                        <div class="col-8">{!!$data->drinkslug['value']!!}</div>
                     </div>
                     @endif
-                    @if($data->children)
+                    @if($data->children !== null)
                     <div class="row mx-0 row_field">
                         <div class="col-4">Дети:</div>
-                        <div class="col-8">{!!$data->children['value']!!}</div>
+                        <div class="col-8">{!!$data->childrenslug['value']!!}</div>
                     </div>
                     @endif
                     <div class="row mx-0 row_field">
@@ -211,16 +217,16 @@
                             @endif
                         </div>
                     </div>
-                    @if($data->you_smoking)
+                    @if($data->you_smoking !== null)
                     <div class="row mx-0 row_field">
                         <div class="col-4">Курение:</div>
-                        <div class="col-8">{!!$data->you_smoking['value']!!}</div>
+                        <div class="col-8">{!!$data->you_smokingslug['value']!!}</div>
                     </div>
                     @endif
-                    @if($data->you_drink)
+                    @if($data->you_drink !== null)
                     <div class="row mx-0 row_field">
                         <div class="col-4">Алкоголь:</div>
-                        <div class="col-8">{!!$data->you_drink['value']!!}</div>
+                        <div class="col-8">{!!$data->you_drinkslug['value']!!}</div>
                     </div>
                     @endif
                 </div>
@@ -232,7 +238,7 @@
                 Вы в черном списке этого пользователя
             @endif
         </div>
-        <div class="col-12 col-sm-6 col-md-3 order-0 order-md-2">
+        <div class="col-12 col-sm-8 mx-auto col-md-6 col-lg-3 my-4 my-lg-0  order-0 order-md-2">
             @include('profile.widgets.users_avatars')
         </div>
     </div>

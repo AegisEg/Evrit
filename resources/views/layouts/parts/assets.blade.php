@@ -20,7 +20,7 @@
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script src="{{ asset('js/main.js')}}"></script>
-
+<script src="{{ asset('js/autobahn.min.js')}}"></script>
 @if(is_edit_mode())
 <link href="{{ asset('css/editable_areas.css') }}" rel="stylesheet">
 @endif

@@ -7,6 +7,7 @@ use Carbon\CarbonImmutable;
 
 class Message extends Model
 {
+    protected $guarded = [];
     public function channel()
     {
         return $this->belongsTo('App\Model\Channel', 'parent_id', 'id');

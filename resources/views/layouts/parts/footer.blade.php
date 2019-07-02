@@ -24,25 +24,49 @@
     </div>
 </footer>
 @if(isset($_GET['post_register']))
-    @include('layouts.modal.register_post')
+@include('layouts.modal.register_post')
 @endif
 @if(isset($_GET['reset_emails']))
-    @include('layouts.modal.reset_emails')
+@include('layouts.modal.reset_emails')
 @endif
 @if(isset($_GET['reset_sucsess']))
-    @include('layouts.modal.reset_sucsess')
+@include('layouts.modal.reset_sucsess')
 @endif
 @if(isset($_GET['verifi_sucsess']))
-    @include('layouts.modal.verifi_sucsess')
+@include('layouts.modal.verifi_sucsess')
 @endif
 @if(isset($_GET['verifi_error']))
-    @include('layouts.modal.verifi_error')
+@include('layouts.modal.verifi_error')
 @endif
 @if(Auth::check())
-    @if(Auth::user()->isAdmin())
-    <div id="edit_mode">
-    <img  src="/images/edit_mode.png" alt="">
+@if(Auth::user()->isAdmin())
+<div id="edit_mode">
+    <img src="/images/edit_mode.png" alt="">
     <a href="?edit_mode=1" class="stretched-link"></a>
-    </div>
-    @endif
+</div>
+@endif
+<script>
+    var conn = new ab.connect(
+        'ws://134.0.113.156:8080',
+        function(session) {
+            @foreach($channels_list as $channel)
+            session.subscribe('{{$channel->key}}', function(topic, data) {   
+                get_unreadble();             
+                $('#chat-' + data.data.id + '>.msg_card_body').append(data.data.text);
+                if($('#chat-' + data.data.id).hasClass('active')&&$('#chat-' + data.data.id).hasClass('show'))
+                {
+                    read_message('chat-' + data.data.id);
+                }
+            });
+            @endforeach
+        },
+        function(code, reason, detail) {
+            console.warn('WebSocket connection closed: code=' + code + '; reason=' + reason + '; detail=' + detail);
+        }, {
+            'maxRetries': 60,
+            'retryDelay': 400,
+            'skipSubprotocolCheck': true
+        }
+    );
+</script>
 @endif

@@ -11,6 +11,7 @@ use App\Model\City;
 use App\Model\Hobby;
 use App\Model\Language;
 use App\Model\Religion;
+use App\Http\Controllers\MessageController;
 use Auth;
 class ViewShareServiceProvider extends ServiceProvider
 {
@@ -57,7 +58,11 @@ class ViewShareServiceProvider extends ServiceProvider
 
       view()->composer('*', function ($view) {
           if (Auth::check())
-              $view->with('count_friend_request', User::find(Auth::id())->friendListToStatus("request")->count());
+          {
+            $view->with('channels_list', Auth::user()->channels);
+            $view->with('count_unreadble_message', MessageController::unreadble_message());            
+            $view->with('count_friend_request', User::find(Auth::id())->friendListToStatus("request")->count());
+          }
         });
       view()->composer('*', function ($view) {
           if (Auth::check())

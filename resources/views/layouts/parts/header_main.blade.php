@@ -31,7 +31,7 @@
                 </div>
                 <div class="col-12 order-0 order-md-1 d-md-flex col-md-4 col-lg-6 row mx-0 icon_menu text-center align-items-center">
                     <div class="col-4 py-3"><a href="{{route('profile.search')}}"><i class="fa fa-search"></i></a></div>
-                    <div class="col-4 py-3"><a href="{{route('messages.index')}}"><i class="fa fa-envelope"></i></a></div>
+                    <div class="col-4 py-3"><a href="{{route('messages.index')}}"><i class="fa fa-envelope position-relative"><span id="count_message" class="@if($count_unreadble_message==0) invise @endif">{{$count_unreadble_message}}</span></i></a></div>
                     <div class="col-4 py-3">
                         <i class="fa fa-users"></i>
                         <ul class="list-group sub_menu">

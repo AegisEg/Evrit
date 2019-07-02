@@ -17,7 +17,7 @@
                         <select class="selectpicker" data-live-search="true" name="i_sponsor">
                             <option value="null">Не выбранно</option>
                             @foreach($list_i_sponsor as $key=>$i_sponsor)
-                            <option value="{{$key}}" {{$data->i_sponsor?$key==$data->i_sponsor['key']?'selected':'':""}}>{{$i_sponsor}}</option>
+                            <option value="{{$key}}" {{$data->i_sponsorslug?$key==$data->i_sponsorslug['key']?'selected':'':""}}>{{$i_sponsor}}</option>
                             @endforeach
                         </select>
                     </label>
@@ -28,7 +28,7 @@
                         <select class="selectpicker" data-live-search="true" name="you_sponsor">
                             <option value="null">Не выбранно</option>
                             @foreach($list_you_sponsor as $key=>$you_sponsor)
-                            <option value="{{$key}}" {{$data->you_sponsor?$key==$data->you_sponsor['key']?'selected':'':""}}>{{$you_sponsor}}</option>
+                            <option value="{{$key}}" {{$data->you_sponsorslug?$key==$data->you_sponsorslug['key']?'selected':'':""}}>{{$you_sponsor}}</option>
                             @endforeach
                         </select>
                     </label>
@@ -39,7 +39,7 @@
                         <select class="selectpicker" data-live-search="true" name="relationship_goal">
                             <option value="null">Не выбранно</option>
                             @foreach($list_relationship_goal as $key=>$relationship_goal)
-                            <option value="{{$key}}" {{$data->relationship_goal?$key==$data->relationship_goal['key']?'selected':'':""}}>{{$relationship_goal}}</option>
+                            <option value="{{$key}}" {{$data->relationship_goalslug?$key==$data->relationship_goalslug['key']?'selected':'':""}}>{{$relationship_goal}}</option>
                             @endforeach
                         </select>
                     </label>
@@ -50,7 +50,7 @@
                         <select class="selectpicker" data-live-search="true" name="availability">
                             <option value="null">Не выбранно</option>
                             @foreach($list_availability as $key=>$availability)
-                            <option value="{{$key}}" {{$data->availability?$key==$data->availability['key']?'selected':'':""}}>{{$availability}}</option>
+                            <option value="{{$key}}" {{$data->availabilityslug?$key==$data->availabilityslug['key']?'selected':'':""}}>{{$availability}}</option>
                             @endforeach
                         </select>
                     </label>
@@ -61,7 +61,7 @@
                         <select class="selectpicker" data-live-search="true" name="income_level">
                             <option value="null">Не выбранно</option>
                             @foreach($list_income_level as $key=>$income_level)
-                            <option value="{{$key}}" {{$data->income_level?$key==$data->income_level['key']?'selected':'':""}}>{{$income_level}}</option>
+                            <option value="{{$key}}" {{$data->income_levelslug?$key==$data->income_levelslug['key']?'selected':'':""}}>{{$income_level}}</option>
                             @endforeach
                         </select>
                     </label>

@@ -140,43 +140,49 @@ class User extends Authenticatable
     //$this->notify(new ResetPasswordNotification($token));
     \App\Jobs\SendMail::dispatch("emails.reset-pass", $this->email, $this->name, $token, "", "Сброс пароля")->onQueue('default');
   }
-  public function getGenderIdAttribute($value)
+  public function getGenderAttribute()
   {
+    $value=$this->gender_id;
     if ($value !== null)
       return ['key' => $value, 'value' => self::$gender[$value]];
     else return $value;
   }
-  public function getSocStatusIdAttribute($value)
+  public function getSocStatusAttribute()
   {
+    $value=$this->soc_status_id;
     if ($value !== null)
       return self::$soc_status[0][$value];
     else return $value;
   }
 
-  public function getOrientationIdAttribute($value)
+  public function getOrientationAttribute()
   {
+    $value=$this->orientation_id;
     if ($value !== null)
       return ['key' => $value, 'value' => self::$orientation[$value]];
     else return $value;
   }
   public function orentation_name($value)
   { }
-  public function getTargetIdAttribute($value)
+  public function getTargetAttribute($value)
   {
+    $value=$this->target;
     if ($value !== null)
       return ['key' => $value, 'value' => self::$target[$value]];
     else return $value;
   }
 
-  public function getAvailabilityAttribute($value)
+  public function getAvailabilitySlugAttribute()
   {
+    $value=$this->availability;
     if ($value !== null)
       return ['key' => $value, 'value' => self::$availability[$value]];
     else return $value;
   }
 
-  public function getBodyTypeAttribute($value)
+  public function getBodyTypeSlugAttribute()
   {
+    $value=$this->body_type;
     if ($value !== null)
       return ['key' => $value, 'value' => self::$body_type[$value]];
     else return $value;
@@ -185,92 +191,105 @@ class User extends Authenticatable
   {
     return $this->belongsToMany('App\Model\Channel', 'user_to_channel', 'user_id', 'channel_id')->with('users','messages');
   }
-  public function getEducationAttribute($value)
+  public function getEducationSlugAttribute()
   {
+    $value=$this->education;
     if ($value !== null)
       return ['key' => $value, 'value' => self::$education[$value]];
     else return $value;
   }
 
-  public function getColorHairAttribute($value)
+  public function getColorHairSlugAttribute()
   {
+    $value=$this->color_hair;
     if ($value !== null)
       return ['key' => $value, 'value' => self::$color_hair[$value]];
     else return $value;
   }
 
-  public function getColorEyeAttribute($value)
+  public function getColorEyeSlugAttribute()
   {
+    $value=$this->color_eye;
     if ($value !== null)
       return ['key' => $value, 'value' => self::$color_eye[$value]];
     else return $value;
   }
 
-  public function getMaritalStatusAttribute($value)
+  public function getMaritalStatusSlugAttribute()
   {
+    $value=$this->marital_status;
     if ($value !== null)
       return ['key' => $value, 'value' => self::$marital_status[$value]];
     else return $value;
   }
-
-  public function getDrinkAttribute($value)
+////////////////
+  public function getDrinkSlugAttribute()
   {
+    $value=$this->drink;
     if ($value !== null)
       return ['key' => $value, 'value' => self::$drink[$value]];
     else return $value;
   }
 
-  public function getSmokingAttribute($value)
+  public function getSmokingSlugAttribute()
   {
+    $value=$this->smoking;
     if ($value !== null)
       return ['key' => $value, 'value' => self::$smoking[$value]];
     else return $value;
   }
 
-  public function getChildrenAttribute($value)
+  public function getChildrenSlugAttribute()
   {
+    $value=$this->children;
     if ($value !== null)
       return ['key' => $value, 'value' => self::$children[$value]];
     else return $value;
   }
 
-  public function getIncomeLevelAttribute($value)
+  public function getIncomeLevelSlugAttribute()
   {
+    $value=$this->income_level;
     if ($value !== null)
       return ['key' => $value, 'value' => self::$income_level[$value]];
     else return $value;
   }
 
-  public function getISponsorAttribute($value)
+  public function getISponsorSlugAttribute()
   {
+    $value=$this->i_sponsor;
     if ($value !== null)
       return ['key' => $value, 'value' => self::$i_sponsor[$value]];
     else return $value;
   }
 
-  public function getYouSponsorAttribute($value)
+  public function getYouSponsorSlugAttribute()
   {
+    $value=$this->you_sponsor;
     if ($value !== null)
       return ['key' => $value, 'value' => self::$you_sponsor[$value]];
     else return $value;
   }
 
-  public function getRelationshipGoalAttribute($value)
+  public function getRelationshipGoalSlugAttribute()
   {
+    $value=$this->relationship_goal;
     if ($value !== null)
       return ['key' => $value, 'value' => self::$relationship_goal[$value]];
     else return $value;
   }
 
-  public function getYouDrinkAttribute($value)
+  public function getYouDrinkSlugAttribute()
   {
+    $value=$this->you_drink;
     if ($value !== null)
       return ['key' => $value, 'value' => self::$drink[$value]];
     else return $value;
   }
 
-  public function getYouSmokingAttribute($value)
+  public function getYouSmokingSlugAttribute()
   {
+    $value=$this->you_smoking;
     if ($value !== null)
       return ['key' => $value, 'value' => self::$smoking[$value]];
     else return $value;

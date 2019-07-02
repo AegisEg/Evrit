@@ -105,9 +105,9 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
             'birthday' =>date("Y-m-d", strtotime($data['birthday'])),
             'city_id' => $data['city_id'],
-            'gender' => $data['gender']=='on'?1:0,
-            'orientation' => $data['orientation'],
-            'soc_status' => $data['soc_status']=='on'?1:0,
+            'gender_id' => $data['gender']=='on'?1:0,
+            'orientation_id' => $data['orientation'],
+            'soc_status_id' => $data['soc_status']=='on'?1:0,
             'confirmation_link' => md5($data['email'].bin2hex(random_bytes(32))),//Hash::make($data['email']),
         ]);
     }

@@ -46,3 +46,6 @@ Route::get('/blacklist', 'ProfileController@blacklistpage')->name('blacklistpage
 //Меседжер
 Route::get('/messages', 'MessageController@index')->name('messages.index');
 Route::post('/send-message', 'MessageController@send_message')->name('send_message');
+Route::post('/сreate-chanel', 'MessageController@send_message')->name('сreate_chanel');
+Route::post('/count-message', 'MessageController@unreadble_message')->name('unreadble_message');
+Route::post('/read-message', 'MessageController@read_message')->name('read_message');

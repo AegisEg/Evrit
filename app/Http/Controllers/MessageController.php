@@ -14,44 +14,85 @@ class MessageController extends Controller
     {
         $this->middleware('auth');
     }
-    public function index()
+    public function index(Request $request)
     {
         $current_user = Auth::user();
         $info['current_user'] = $current_user;
         $info['channels'] = $info['current_user']->channels;
-        foreach ($info['channels'] as $channel) {
-            $channel['interlocutor'] = $channel->users->where('id', '!=', $current_user->id)->first();
-        }
-        return view('chat.chat-page', $info);
+        if (!$info['channels']->isEmpty()) {
+            if (!$request->shell)
+                return redirect()->route('messages.index', ['shell' => 'chat-' . $info['channels'][0]->id]);
+            foreach ($info['channels'] as $channel) {
+                $channel['interlocutor'] = $channel->users->where('id', '!=', $current_user->id)->first();
+                $channel['is_you_ignore'] = $current_user->is_you_ignore($channel['interlocutor']->id);
+                $channel['is_ignore'] = $current_user->is_ignore($channel['interlocutor']->id);
+            }
+            return view('chat.chat-page', $info);
+        } else
+            return view('chat.empty_message', $info);
     }
     public function send_message(Request $request)
     {
-        $channel = Channel::where('key', $request->key)->first();        
+        $channel = Channel::where('key', $request->key)->first();
         if ($channel) {
             self::socketMessage($channel, $request);
+        } else {
+            $from_user = Auth::id();
+            $channel = Channel::IsChanelOpen($from_user, $request->to_user);
+            if (!$channel) {
+                $channel = new Channel;
+                $channel->key = bcrypt((string) $from_user . "to" . $request->to_user);
+                $channel->save();
+                $channel->users()->attach([$from_user, $request->to_user]);
+            }
+            self::socketMessage($channel, $request);
         }
-        else {
-            $channel=new Channel;
-            $channel->key=bcrypt((string)$request->from_user."to".$request->to_user);
-            $channel->save();
-            $channel->users()->attach([$request->from_user,$request->to_user]);            
-            self::socketMessage($channel, $request);           
+        if (!$request->ajax)
+            return redirect()->route("messages.index", ['shell' => 'chat-' . $channel->id]);
+    }
+    public static function socketMessage($channel, Request $request)
+    {
+        $user_auth = Auth::user();
+        $interlocutor = $channel->users->where('id', '!=', $user_auth->id)->first();       
+        if (!$user_auth->is_you_ignore($interlocutor->id)&&!$user_auth->is_ignore($interlocutor->id)) {
+            $message = new Message;
+            $message->parent_id = $channel->id;
+            $message->user_id = $user_auth->id;
+            $message->text = $request->text;
+            $message->save();
+            $data = [
+                'topic_id' => $channel->key,
+                'data' => [
+                    'text' => view('chat.parts.message', ['message' => $message])->render(),
+                    'id' => $channel->id
+                ]
+            ];
+            Pusher::sentDataToServer($data);
         }
     }
-    public static function socketMessage($channel,Request $request)
+    public static function unreadble_message()
     {
-        $message=new Message;
-        $message->parent_id=$channel->id;
-        $message->user_id=Auth::id();
-        $message->text=$request->text;
-        $message->save();
-        $data = [
-            'topic_id' => $channel->key,
-            'data' => [
-                'text' => view('chat.parts.message',['message'=>$message])->render(),
-                'id'=>$channel->id
-            ]
-        ];
-        Pusher::sentDataToServer($data);
+        $user = Auth::user();
+        $channels = $user->channels;
+        $count = 0;
+        foreach ($channels as $channel) {
+            $count += $channel->messages->where('user_id', '!=', $user->id)->where('is_read', null)->count();
+        }
+        return $count;
+    }
+    public  function read_message(Request $request)
+    {
+        $user = Auth::user();
+        $id = str_replace('chat-', '', $request->id);
+        $channel = $user->channels->where('id', $id)->first();
+        if ($channel) {
+            $count = 0;
+            $messages = $channel->messages->where('user_id', '!=', $user->id)->where('is_read', null);
+            foreach ($messages as $message) {
+                $message->is_read = true;
+                $message->save();
+            }
+        }
+        return self::unreadble_message();
     }
 }

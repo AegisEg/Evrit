@@ -24,11 +24,11 @@ class CreateUsersTable extends Migration
             $table->mediumText('description')->nullable(); // описание
             $table->date('birthday')->nullable(); // др
             $table->integer('city_id')->nullable(); // айди города
-            $table->tinyInteger('gender')->nullable(); // пол . муж. жен.
+            $table->tinyInteger('gender_id')->nullable(); // пол . муж. жен.
             $table->tinyInteger('orientation_id')->nullable(); // кого ищет юзер муж. жен. оба
-            $table->tinyInteger('soc_status')->nullable(); // отдельная таблица, кто юзер, сахарный папа, мама и тд
+            $table->tinyInteger('soc_status_id')->nullable(); // отдельная таблица, кто юзер, сахарный папа, мама и тд
             $table->tinyInteger('profession')->nullable(); // отдельная таблица
-            $table->tinyInteger('target')->nullable(); // отдельная таблица, кого ищешь - сахарный папа или мама или бейби 
+            $table->tinyInteger('target_id')->nullable(); // отдельная таблица, кого ищешь - сахарный папа или мама или бейби 
             $table->tinyInteger('availability')->nullable(); // статический массив. доступность, в какое время
             $table->tinyInteger('body_type')->nullable(); // статический массив. тип телосложения
             $table->tinyInteger('education')->nullable(); // статический массив. образование
