@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ResetsPasswords;
+use Illuminate\Http\Request;
 
 class ResetPasswordController extends Controller
 {
@@ -31,13 +32,9 @@ class ResetPasswordController extends Controller
      * Create a new controller instance.
      *
      * @return void
-     */
-    public function __construct()
+     */    
+    protected function sendResetResponse(Request $request)
     {
-        $this->middleware('guest');
-    }
-    protected function sendResetResponse(Request $request, $response)
-    {
-        return redirect()->route('home',['reset_sucsess'=>"true"])->with('status', trans($response));
+        return redirect()->route('home')->withInput(array('reset_sucsess' => true));
     }
 }

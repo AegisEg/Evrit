@@ -27,8 +27,16 @@ class AdminSectionsServiceProvider extends ServiceProvider
      */
     protected $sections = [
         \App\User::class=> 'Admin\Http\Sections\Users',
+        \App\Model\UserImage::class => 'Admin\Http\Sections\Gallery',
+        \App\Model\ImageComment::class => 'Admin\Http\Sections\CommentsImage',
         \App\Model\City::class => 'Admin\Http\Sections\Cities',
+        \App\Model\Profession::class => 'Admin\Http\Sections\Professions',
+        \App\Model\Hobby::class => 'Admin\Http\Sections\Hobbys',
+        \App\Model\Language::class => 'Admin\Http\Sections\Languages',
+        \App\Model\Religion::class => 'Admin\Http\Sections\Religions',
         \App\Model\Area::class => 'Admin\Http\Sections\Areas',
+        \App\Model\Feedback::class => 'Admin\Http\Sections\Feedbacks',
+
     ];
 
     /**

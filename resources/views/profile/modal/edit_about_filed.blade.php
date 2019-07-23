@@ -12,6 +12,17 @@
                     <input name="_token" type="hidden" value="{{ csrf_token() }}">
                     <label class="col-12  my-3">
                         <span>
+                            Профессия
+                        </span>
+                        <select class="selectpicker" data-live-search="true" name="profession">
+                            <option value="null">Не выбранно</option>
+                            @foreach($list_profession as $profession)
+                            <option value="{{$profession->id}}" {{$profession->id==$data->profession?'selected':''}} >{{$profession->name}}</option>
+                            @endforeach
+                        </select>
+                    </label>
+                    <label class="col-12  my-3">
+                        <span>
                             Образование
                         </span>
                         <select class="selectpicker" data-live-search="true" name="education">
@@ -66,8 +77,8 @@
                         </span>
                         <select class="selectpicker" data-live-search="true" name="religion">
                         	<option value="null">Не выбранно</option>
-                            @foreach($list_religion as $key=>$religion)
-                            <option value="{{$religion->id}}" {{$data->religion?$key==$data->religion['key']?'selected':'':""}}>{{$religion->name}}</option>
+                            @foreach($list_religion as $religion)
+                            <option value="{{$religion->id}}" {{$religion->id==$data->religion?'selected':''}} >{{$religion->name}}</option>
                             @endforeach
                         </select>
                     </label>

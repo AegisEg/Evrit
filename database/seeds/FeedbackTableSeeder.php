@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class ProfileTableSeeder extends Seeder
+class FeedbackTableSeeder extends Seeder
 {
 
     /**
@@ -14,7 +14,7 @@ class ProfileTableSeeder extends Seeder
     {
         
 
-        \DB::table('profile')->delete();
+        \DB::table('feedback')->delete();
         
         
         

@@ -15,7 +15,7 @@
 	@if($fStatus == null || $fStatus == "request") <p class="py-1 my-0" id="add_to_friend"><a href="{{ route('profile.add_friend',[$data->id]) }}"><i class="fa fa-plus pl-2"></i>Добавить в друзья</a></p> @endif
 	@if($fStatus == "send") Запрос на дружбу отправлен @endif
 	@if($fStatus == "friend") Пользователь - ваш друг
-	<p class="py-1 my-0" id="del_friend"><a href="{{ route('profile.del_friend',[$data->id]) }}"><i class="fa fa-plus pl-2"></i>Удалить из друзей</a></p> @endif
+	<p class="py-1 my-0" id="del_friend"><a href="{{ route('profile.del_friend',[$data->id]) }}"><i class="fa fa-minus pl-2"></i>Удалить из друзей</a></p> @endif
 </form>
 <p class="new_message py-1 my-0" data-user="{{$data->id}}" data-toggle="modal" data-target="#send_new_message">Написать сообщение</p>
 <div class="modal" tabindex="-1" role="dialog" id="send_new_message">
@@ -40,8 +40,12 @@
 	</div>
 </div>
 @endif
+<span class="trouble_send" data-toggle="modal" data-target="#send_trouble">
+	<i class="fa fa-flag"></i> Пожаловаться
+</span>
 @if(!$is_ignore)
-<p class="py-1 my-0" id="to_blacklist" data-user="{{$data->id}}"><i class="fa fa-spinner loading_ico pl-2"></i><i class="fa fa-times-circle pl-2"></i>В черный список</p>
+<p class="py-1 my-0" id="to_favorite"><a href="{{route('profile.toogle_favorite',['id'=>$data->id])}}"><i class="fa fa-heart"></i> @if(Auth::user()->favoritesuser->contains($data->id)) Удалить из избранного @else В избранное @endif</a></p>
+<p class="py-1 my-0" id="to_blacklist" data-user="{{$data->id}}"><i class="fa fa-spinner loading_ico pl-2"></i><i class="fa fa-times-circle pl-2"></i> В черный список</p>
 @else
 <p class="py-1 my-0" id="to_blacklist" data-user="{{$data->id}}"><i class="fa fa-spinner loading_ico pl-2"></i><i class="fa fa-times-circle pl-2"></i>Убрать из черного списка</p>
 @endif

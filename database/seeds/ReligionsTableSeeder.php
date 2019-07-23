@@ -31,6 +31,13 @@ class ReligionsTableSeeder extends Seeder
                 'created_at' => NULL,
                 'updated_at' => NULL,
             ),
+            2 => 
+            array (
+                'id' => 3,
+                'name' => 'Буддисты',
+                'created_at' => '2019-07-04 16:50:58',
+                'updated_at' => '2019-07-04 16:51:31',
+            ),
         ));
         
         

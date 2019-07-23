@@ -5,10 +5,14 @@
 
 .editable-area {
     position: relative;
-    display: flex;
+    display: block;
     flex-wrap: wrap;
     min-width: 100%;
     min-height: 30px;
+}
+
+.row>.editable-area {
+    display: flex;
 }
 
 .editable-area-panel {

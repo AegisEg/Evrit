@@ -19,37 +19,19 @@ class FriendsListTableSeeder extends Seeder
         \DB::table('friends_list')->insert(array (
             0 => 
             array (
-                'id' => 11,
-                'user_id' => 3,
+                'id' => 5,
+                'user_id' => 2,
                 'user2_id' => 1,
-                'status' => 'send',
+                'status' => 'request',
                 'created_at' => NULL,
                 'updated_at' => NULL,
             ),
             1 => 
             array (
-                'id' => 12,
+                'id' => 6,
                 'user_id' => 1,
-                'user2_id' => 3,
-                'status' => 'request',
-                'created_at' => NULL,
-                'updated_at' => NULL,
-            ),
-            2 => 
-            array (
-                'id' => 13,
-                'user_id' => 3,
-                'user2_id' => 6,
-                'status' => 'friend',
-                'created_at' => NULL,
-                'updated_at' => NULL,
-            ),
-            3 => 
-            array (
-                'id' => 14,
-                'user_id' => 6,
-                'user2_id' => 3,
-                'status' => 'friend',
+                'user2_id' => 2,
+                'status' => 'send',
                 'created_at' => NULL,
                 'updated_at' => NULL,
             ),

@@ -23,9 +23,16 @@
                     </div>
                     <nav id="sidebar" class="text-right">
                         <ul class="list-unstyled components">
-                        <li><a href="{{route('profile.myprofile')}}"><i class="fa fa-id-card pl-2"></i>Мой профиль</a></li>
-                            <li><a href="{{route('blacklistpage')}}"><i class="fa fa-times-circle pl-2"></i>Черный список</a></li>
-                            <li><a href="{{route('logout')}}">Выйти <i class="fas fa-sign-out-alt"></i></a></li>
+                            <li><a href="{{route('profile.search')}}"><i class="fa fa-search"></i> Поиск</a></li>
+                            <li><a href="{{route('profile.myprofile')}}"><i class="fa fa-id-card pl-2"></i> Мой профиль</a></li>
+                            <li><a href="/profile?gallery=true"><i class="fa fa-image"></i> Моя галлерея</a></li>      
+                            <li><a href="{{route('profile.friend')}}?friend_list"><i class="fa fa-handshake"></i> Мои друзья</a></li>  
+                            <li><a href="{{route('profile.friend')}}?friend_requests"><i class="fa fa-question"></i> Заявки в друзья</a></li>                     
+                            <li><a href="{{route('messages.index')}}"><i class="fa fa-envelope"></i> Сообщения</a></li>
+                            <li><a href="{{route('profile.favorites')}}"><i class="fa fa-heart pl-2"></i> Мой избранные</a></li>
+                            <li><a href="{{route('blacklistpage')}}"><i class="fa fa-times-circle pl-2"></i> Черный список</a></li>
+                            <li><a href="{{route('profile.settings')}}"><i class="fa fa-cogs"></i> Настройки</a></li>
+                            <li><a href="{{route('logout')}}">Выйти <i class="fas fa-sign-out-alt"></i></a></li>                            
                         </ul>
                     </nav>
                 </div>
@@ -36,7 +43,7 @@
                         <i class="fa fa-users"></i>
                         <ul class="list-group sub_menu">
                             <li class="list-group-item d-flex justify-content-between align-items-center">
-                                <a href="{{route('profile.friend')}}">
+                                <a href="{{route('profile.friend')}}?friend_requests">
                                     Заявки в друзья
                                     <span class="badge badge-primary badge-pill">{{$count_friend_request}}</span>
                                 </a>
@@ -55,12 +62,12 @@
             @if(!Auth::check())
             <nav class="col-12 col-md-4 row mx-0 my-4 my-md-0 text-center text-md-right menu align-items-center order-1 order-md-1">
                 <div class="position-relative mx-auto mx-md-3">
-                    <a href="" class="stretched-link py-2">
-                        О нас
+                    <a href="{{route('rule')}}" class="stretched-link py-2">
+                        Правила сайта
                     </a>
                 </div>
                 <div class="position-relative mx-auto mx-md-3">
-                    <a href="" class="stretched-link py-2">
+                    <a href="{{route('about_us')}}" class="stretched-link py-2">
                         Как это работает?
                     </a>
                 </div>
@@ -68,7 +75,7 @@
             @endif
             <div class="col-12 col-md-3 order-0 order-md-2">
                 <img src="/images/google.png" class="logo" alt="">
-                <a href="@if(Auth::check()) {{route('profile.myprofile')}} @else {{route('home')}} @endif" class="stretched-link py-2">
+                <a href="{{route('home')}}" class="stretched-link py-2">
                 </a>
             </div>
         </div>

@@ -40,8 +40,5 @@ class FeedMail extends Mailable
         return $this
          ->view($this->template,$info)
          ->subject($this->title);
-        // return $this->from('rushit94@mail.ru', 'Ваше приложение')
-        // ->subject('Ваше напоминание!')
-        // ->view('emails.registration');
     }
 }

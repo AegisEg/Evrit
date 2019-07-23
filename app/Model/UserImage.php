@@ -11,6 +11,7 @@ class UserImage extends Model
   {
     return $this->hasMany('App\Model\ImageComment', 'img_id', 'id');
   }
+
   public function user()
   {
     return $this->belongsTo('App\User', 'user_id', 'id');
@@ -18,5 +19,10 @@ class UserImage extends Model
   public function user_likes()
   {
     return $this->belongsToMany('App\User', 'user_to_like', 'image_id', 'user_id');
+  }
+
+  public function scopeWithUser($query, $id)
+  {
+    $query->where('user_id', $id);
   }
 }

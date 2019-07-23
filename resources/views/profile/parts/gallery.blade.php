@@ -16,7 +16,11 @@
                         <span class="pl-3 to_like @if($img->user_likes->contains(Auth::id())) active @endif" data-id="{{$img->id}}"><i class="fa fa-heart"></i>
                             <div class="count_likes">{{$img->user_likes->count()}}</div>
                         </span>
-                        <span><i class="fa fa-flag"></i></span>
+                        @if(!$owner)
+                        <span class="trouble_send" data-toggle="modal" data-target="#send_trouble">
+                            <i class="fa fa-flag"></i>
+                        </span>
+                        @endif
                     </div>
                 </div>
                 <div class="comments_img">
@@ -59,7 +63,7 @@
                     </div>
                     <div class="d-block col-8 my-3">
                         <label for="discription">Описание</label>
-                        <textarea class="form-control" id="discription" rows="3"></textarea>
+                        <textarea class="form-control" maxlength="190" name="discription" id="discription" rows="3"></textarea>
                     </div>
                     <div class="col-8  my-3">
                         <span>

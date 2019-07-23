@@ -28,8 +28,15 @@ Route::post('/profile/image_save', 'GalleryController@add_image')->name('profile
 Route::get('/messages', 'MessageController@index')->name('messages.index');
 Route::get('/friends', 'ProfileController@friendPage')->name('profile.friend');
 Route::get('/guest', 'ProfileController@guestPage')->name('profile.guest');
+Route::get('/settings', 'ProfileController@settings_page')->name('profile.settings');
+Route::post('/settings', 'ProfileController@settings_save')->name('profile.settings_save');
+Route::get('/favorites', 'ProfileController@favoritesPage')->name('profile.favorites');
+Route::post('/del_profile', 'ProfileController@del_profile')->name('profile.del_profile');
 Route::get('/profile/{id}/add-friend', 'FriendController@addFriend')->name('profile.add_friend');
 Route::get('/profile/{id}/del-friend', 'FriendController@delFriend')->name('profile.del_friend');
+Route::get('/toogle_favorite/{id}', 'FriendController@toogle_favorite')->name('profile.toogle_favorite');
+Route::get('/about_us', 'HomeController@about')->name('about_us');
+Route::get('/rule', 'HomeController@rule')->name('rule');
 // Route::get('/test', 'TestController@ebanumba')->name('ebanumba');
 //likes
 Route::post('/toggle-like', 'GalleryController@toggle_like')->name('profile.toggle_like');
@@ -37,6 +44,7 @@ Route::post('/toggle-like', 'GalleryController@toggle_like')->name('profile.togg
 Route::post('/add-comment', 'GalleryController@add_comment')->name('profile.add_comment');
 Route::post('/del-comment', 'GalleryController@del_comment')->name('profile.del_comment');
 Route::post('/del-image', 'GalleryController@del_image')->name('profile.del_image');
+Route::post('/send-feedback','MessageController@send_feedback')->name('send_feedback');
 //Поиск
 Route::get('/search', 'HomeController@search_page')->name('profile.search');
 Route::post('/search', 'HomeController@search');

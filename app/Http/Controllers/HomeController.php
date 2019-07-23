@@ -23,9 +23,23 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('index');
+        $info['users'] = User::all();
+        if ($info['users']->count() >= 8)
+            $info['users'] = $info['users']->random(8);
+        else
+            $info['users']->random($info['users']->count());
+        return view('index',$info);
     }
-
+    public function about()
+    {
+        $info['title']="О нас";
+        return view('pages.about',$info);
+    }
+    public function rule()
+    {
+        $info['title']="Правила сайта";
+        return view('pages.rule',$info);
+    }
     public function search(Request $request)
     {
         $city = $request->city_id;
@@ -87,6 +101,7 @@ class HomeController extends Controller
     }
     public function search_page()
     {
+		$info['title'] = "Поиск";
         $info['users'] = User::where('is_verification', '1')->get();
         $info['count'] = $info['users']->count();
         $info['users'] = $info['users']->forPage(1, 12);

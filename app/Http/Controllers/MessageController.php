@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Model\Message;
 use App\Model\Channel;
+use App\Model\Feedback;
 use App\Classes\Socket\Pusher;
 use Auth;
 
@@ -17,6 +18,7 @@ class MessageController extends Controller
     public function index(Request $request)
     {
         $current_user = Auth::user();
+		$info['title'] = "Диалоги";
         $info['current_user'] = $current_user;
         $info['channels'] = $info['current_user']->channels;
         if (!$info['channels']->isEmpty()) {
@@ -53,8 +55,8 @@ class MessageController extends Controller
     public static function socketMessage($channel, Request $request)
     {
         $user_auth = Auth::user();
-        $interlocutor = $channel->users->where('id', '!=', $user_auth->id)->first();       
-        if (!$user_auth->is_you_ignore($interlocutor->id)&&!$user_auth->is_ignore($interlocutor->id)) {
+        $interlocutor = $channel->users->where('id', '!=', $user_auth->id)->first();
+        if (!$user_auth->is_you_ignore($interlocutor->id) && !$user_auth->is_ignore($interlocutor->id)) {
             $message = new Message;
             $message->parent_id = $channel->id;
             $message->user_id = $user_auth->id;
@@ -94,5 +96,19 @@ class MessageController extends Controller
             }
         }
         return self::unreadble_message();
+    }
+    public  function send_feedback(Request $request)
+    {
+        if ($request->text) {
+            $feedback = new Feedback;
+            $feedback->user_id = Auth::id();
+            $feedback->url=url()->previous();
+            $feedback->text = $request->text;
+            $feedback->save();
+            return redirect()->back()->withInput(array('success_trouble_success' => true));
+        }
+        else {
+            return redirect()->back()->withErrors(['all'=>'Не заполнено поле']);
+        }
     }
 }

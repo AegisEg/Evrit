@@ -27,7 +27,6 @@ class DatabaseSeeder extends Seeder
         $this->call(JobsTableSeeder::class);
         $this->call(OriginTableSeeder::class);
         $this->call(PasswordResetsTableSeeder::class);
-        $this->call(ProfileTableSeeder::class);
         $this->call(ReviewListTableSeeder::class);
         $this->call(SocStatusTableSeeder::class);
         $this->call(TargetTableSeeder::class);
@@ -37,5 +36,6 @@ class DatabaseSeeder extends Seeder
         $this->call(MessagesTableSeeder::class);
         $this->call(UserToChannelTableSeeder::class);
         $this->call(MigrationsTableSeeder::class);
+        $this->call(FeedbackTableSeeder::class);
     }
 }

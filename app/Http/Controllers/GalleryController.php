@@ -17,6 +17,8 @@ class GalleryController extends Controller
     public function toggle_like(Request $request)
     {
         $image = UserImage::where('id', $request->image_id)->first();
+        if (!$image->user_likes->contains(Auth::id()) && Auth::id() != $image->user->id && $image->user->like_me_send)
+            \App\Jobs\SendMail::dispatch("emails.like_me", $image->user->email, $image->user->name, Auth::user(), '', "Вашу фотографию оценили на сайте Saggar")->onQueue('default');
         if ($image) {
             $image->user_likes()->toggle(Auth::id());
             return  json_encode(['result' => $image->user_likes()->get()->contains(Auth::id()), 'count' => $image->user_likes()->get()->count()]);
@@ -30,6 +32,9 @@ class GalleryController extends Controller
             $comment->user_id = Auth::id();
             $comment->text = $request->text;
             $comment->save();
+            $comment = ImageComment::with('user', 'img')->find($comment->id);
+            if ($comment->img->user->new_comment_send && $comment->user->id != $comment->img->user->id)
+                \App\Jobs\SendMail::dispatch("emails.new_comment", $comment->img->user->email, $comment->img->user->name, $comment->user, '', "Новый коментарий под вашим фото на сайте Saggar")->onQueue('default');
             return view('profile.parts.comment', ['comment' => $comment]);
         }
     }
@@ -46,16 +51,18 @@ class GalleryController extends Controller
     }
     public function add_image(Request $request)
     {
-        $extension = $request->file('src')->getClientOriginalExtension();
-        $dir = 'storage/uploads/' . Auth::user()->email;
-        $filename = uniqid() . '_' . time() . '.' . $extension;
-        $request->file('src')->move($dir, $filename);
-        $image = new UserImage;
-        $image->user_id = Auth::id();
-        $image->src = $dir . '/' . $filename;
-        $image->confidentiality = $request->confidentiality;
-        $image->description = $request->description;
-        $image->save();
+        if ($request->file('src')) {
+            $extension = $request->file('src')->getClientOriginalExtension();
+            $dir = 'storage/uploads/' . Auth::user()->email;
+            $filename = uniqid() . '_' . time() . '.' . $extension;
+            $request->file('src')->move($dir, $filename);
+            $image = new UserImage;
+            $image->user_id = Auth::id();
+            $image->src = $dir . '/' . $filename;
+            $image->confidentiality = $request->confidentiality;
+            $image->description = $request->discription;
+            $image->save();
+        }
         return redirect()->back();
     }
     public function del_comment(Request $request)

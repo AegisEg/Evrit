@@ -21,17 +21,14 @@ class ForgotPasswordController extends Controller
 
     use SendsPasswordResetEmails;
 
+    protected $redirectTo = '/';
     /**
      * Create a new controller instance.
      *
      * @return void
-     */
-    public function __construct()
-    {
-        $this->middleware('guest');
-    }
+     */    
     protected function sendResetLinkResponse(Request $request, $response)
     {
-        return redirect()->route('home',['reset_emails'=>"true"])->with('status', trans($response));
+        return redirect()->route('home')->withInput(array('reset_emails' => true))->with('status', trans($response));
     }
 }

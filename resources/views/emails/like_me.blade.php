@@ -1,0 +1,1 @@
+Вашу фотографию оценил <a href="{{route('profile.show',['id'=>$confirmation_link->id])}}">{{$confirmation_link->name}}</a>

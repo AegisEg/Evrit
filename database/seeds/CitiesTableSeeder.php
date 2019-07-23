@@ -31,6 +31,13 @@ class CitiesTableSeeder extends Seeder
                 'created_at' => NULL,
                 'updated_at' => NULL,
             ),
+            2 => 
+            array (
+                'id' => 4,
+                'name' => 'Краснодар',
+                'created_at' => '2019-07-06 09:33:00',
+                'updated_at' => '2019-07-06 09:33:00',
+            ),
         ));
         
         

@@ -27,59 +27,78 @@ class User extends Authenticatable
   static $i_sponsor = [0 => 'Основные потребности', 1 => 'Основные потребности + подарки', 2 => 'Мой благодетель', 3 => 'Дорогой образ жизни'];
   static $you_sponsor = [0 => 'Основные потребности', 1 => 'Основные потребности + подарки', 2 => 'Мой благодетель', 3 => 'Дорогой образ жизни'];
   static $relationship_goal = [0 => 'Куда бы вы не приехали, мы приедем', 1 => 'Компании, подарки и развлечения', 2 => 'Только для переписки', 3 => 'Контакт для брака'];
-  // static $you_drink = [0=>'Никогда', 1 =>'В компании', 2=>'Редко', 3 =>'Часто', 4=>'Пытаюсь бросить', 5 =>'Бросил'];
-  // static $you_smoking = [0=>'Никогда', 1 =>'Курильщик', 2=>'В компании', 3 =>'Здесь и там', 4=>'Пытаюсь бросить', 5 =>'Бросил'];
-  // Не нужны, в ниж жи такие же значения как и в drink,smoking
   protected $guarded = [];
+
   public function isAdmin()
   {
     return $this->is_admin;
   }
+  //Город
   public function city()
   {
     return $this->belongsTo('App\Model\City', 'city_id', 'id');
-    //Это я поправил, чтобы работал профиль. Это обратное отношение
   }
+  //Изображения
   public function gallery()
   {
     return $this->hasMany('App\Model\UserImage', 'user_id', 'id')->with('comments');
   }
+  //Обратная связь
+  public function feedbacks()
+  {
+    return $this->hasMany('App\Model\Feedback', 'user_id', 'id');
+  }
+  //Сообщения по каналу
   public function messages($channel)
   {
     return $this->hasMany('App\Model\Message', 'user_id', 'id')->where('parent_id', $channel);
   }
+  //все сообщения
+  public function messagesall()
+  {
+    return $this->hasMany('App\Model\Message', 'user_id', 'id');
+  }
+  //Каналы
+  public function channels()
+  {
+    return $this->belongsToMany('App\Model\Channel', 'user_to_channel', 'user_id', 'channel_id')->with('users', 'messages');
+  }
+  //Лайки
   public function likes_image()
   {
     return $this->belongsToMany('App\Model\UserImage', 'user_to_like', 'user_id', 'image_id');
   }
+  //Профессия
   public function professionRel()
   {
     return $this->belongsTo('App\Model\Profession', 'profession', 'id');
   }
+  //Коментарии
   public function comments()
   {
     return $this->hasMany('App\Model\ImageComment', 'user_id', 'id');
   }
+  //Религия
   public function religionRel()
   {
     return $this->belongsTo('App\Model\Religion', 'religion', 'id');
   }
-
+  //Хобби
   public function hobbyRel()
   {
     return $this->belongsToMany('App\Model\Hobby', 'hobby_user', 'user_id', 'hobby_id');
   }
-
+  //Языки
   public function languageRel()
   {
     return $this->belongsToMany('App\Model\Language', 'language_user', 'user_id', 'language_id');
   }
-
-  public function userFriend($value) // связь между юзером один и юзером 2
+  //связь между юзером один и юзером 2. Друзья
+  public function userFriend()
   {
     return $this->belongsToMany('App\User', 'friends_list', 'user_id', 'user2_id');
   }
-
+  //связь между юзером один и юзером 2. Друзья обратное отношения
   public function friendUser()
   {
     return $this->belongsToMany('App\User', 'friends_list', 'user2_id', 'user_id');
@@ -94,23 +113,31 @@ class User extends Authenticatable
   {
     return $this->belongsToMany('App\User', 'friends_list', 'user_id', 'user2_id')->withPivot('status')->wherePivot('user2_id', $value);
   }
-
-  public function reviewUser() // связь между юзером один и юзером 2
+  // связь между юзером один и юзером 2. Просмотры
+  public function reviewUser()
   {
-    return $this->belongsToMany('App\User', 'review_list', 'user_id', 'user2_id');
+    return $this->belongsToMany('App\User', 'review_list', 'user_id', 'user2_id')->withTimestamps()->withPivot('created_at');
   }
-
+  // связь между юзером один и юзером 2. Просмотры. обратное отношение
   public function userReview()
   {
-    return $this->belongsToMany('App\User', 'review_list', 'user2_id', 'user_id');
+    return $this->belongsToMany('App\User', 'review_list', 'user2_id', 'user_id')->withTimestamps();
   }
 
   public function reviewList($value) // возвращает список новых гостей
   {
     return $this->belongsToMany('App\User', 'review_list', 'user2_id', 'user_id')->wherePivot('chek', $value);
   }
-
-
+  // связь между юзером один и юзером 2. Избранное
+  public function usersfavorite()
+  {
+    return $this->belongsToMany('App\User', 'favorite_to_user', 'user_id', 'user2_id')->withTimestamps();
+  }
+  // связь между юзером один и юзером 2. Избранное. обратное отношение
+  public function favoritesuser()
+  {
+    return $this->belongsToMany('App\User', 'favorite_to_user', 'user2_id', 'user_id')->withTimestamps();
+  }
   public function blacklistUser()
   {
     return $this->belongsToMany('App\User', 'blacklist', 'user2_id', 'user_id');
@@ -142,14 +169,14 @@ class User extends Authenticatable
   }
   public function getGenderAttribute()
   {
-    $value=$this->gender_id;
+    $value = $this->gender_id;
     if ($value !== null)
       return ['key' => $value, 'value' => self::$gender[$value]];
     else return $value;
   }
   public function getSocStatusAttribute()
   {
-    $value=$this->soc_status_id;
+    $value = $this->soc_status_id;
     if ($value !== null)
       return self::$soc_status[0][$value];
     else return $value;
@@ -157,7 +184,7 @@ class User extends Authenticatable
 
   public function getOrientationAttribute()
   {
-    $value=$this->orientation_id;
+    $value = $this->orientation_id;
     if ($value !== null)
       return ['key' => $value, 'value' => self::$orientation[$value]];
     else return $value;
@@ -166,7 +193,7 @@ class User extends Authenticatable
   { }
   public function getTargetAttribute($value)
   {
-    $value=$this->target;
+    $value = $this->target;
     if ($value !== null)
       return ['key' => $value, 'value' => self::$target[$value]];
     else return $value;
@@ -174,7 +201,7 @@ class User extends Authenticatable
 
   public function getAvailabilitySlugAttribute()
   {
-    $value=$this->availability;
+    $value = $this->availability;
     if ($value !== null)
       return ['key' => $value, 'value' => self::$availability[$value]];
     else return $value;
@@ -182,18 +209,14 @@ class User extends Authenticatable
 
   public function getBodyTypeSlugAttribute()
   {
-    $value=$this->body_type;
+    $value = $this->body_type;
     if ($value !== null)
       return ['key' => $value, 'value' => self::$body_type[$value]];
     else return $value;
   }
-  public function channels()
-  {
-    return $this->belongsToMany('App\Model\Channel', 'user_to_channel', 'user_id', 'channel_id')->with('users','messages');
-  }
   public function getEducationSlugAttribute()
   {
-    $value=$this->education;
+    $value = $this->education;
     if ($value !== null)
       return ['key' => $value, 'value' => self::$education[$value]];
     else return $value;
@@ -201,7 +224,7 @@ class User extends Authenticatable
 
   public function getColorHairSlugAttribute()
   {
-    $value=$this->color_hair;
+    $value = $this->color_hair;
     if ($value !== null)
       return ['key' => $value, 'value' => self::$color_hair[$value]];
     else return $value;
@@ -209,7 +232,7 @@ class User extends Authenticatable
 
   public function getColorEyeSlugAttribute()
   {
-    $value=$this->color_eye;
+    $value = $this->color_eye;
     if ($value !== null)
       return ['key' => $value, 'value' => self::$color_eye[$value]];
     else return $value;
@@ -217,15 +240,15 @@ class User extends Authenticatable
 
   public function getMaritalStatusSlugAttribute()
   {
-    $value=$this->marital_status;
+    $value = $this->marital_status;
     if ($value !== null)
       return ['key' => $value, 'value' => self::$marital_status[$value]];
     else return $value;
   }
-////////////////
+  ////////////////
   public function getDrinkSlugAttribute()
   {
-    $value=$this->drink;
+    $value = $this->drink;
     if ($value !== null)
       return ['key' => $value, 'value' => self::$drink[$value]];
     else return $value;
@@ -233,7 +256,7 @@ class User extends Authenticatable
 
   public function getSmokingSlugAttribute()
   {
-    $value=$this->smoking;
+    $value = $this->smoking;
     if ($value !== null)
       return ['key' => $value, 'value' => self::$smoking[$value]];
     else return $value;
@@ -241,7 +264,7 @@ class User extends Authenticatable
 
   public function getChildrenSlugAttribute()
   {
-    $value=$this->children;
+    $value = $this->children;
     if ($value !== null)
       return ['key' => $value, 'value' => self::$children[$value]];
     else return $value;
@@ -249,7 +272,7 @@ class User extends Authenticatable
 
   public function getIncomeLevelSlugAttribute()
   {
-    $value=$this->income_level;
+    $value = $this->income_level;
     if ($value !== null)
       return ['key' => $value, 'value' => self::$income_level[$value]];
     else return $value;
@@ -257,7 +280,7 @@ class User extends Authenticatable
 
   public function getISponsorSlugAttribute()
   {
-    $value=$this->i_sponsor;
+    $value = $this->i_sponsor;
     if ($value !== null)
       return ['key' => $value, 'value' => self::$i_sponsor[$value]];
     else return $value;
@@ -265,7 +288,7 @@ class User extends Authenticatable
 
   public function getYouSponsorSlugAttribute()
   {
-    $value=$this->you_sponsor;
+    $value = $this->you_sponsor;
     if ($value !== null)
       return ['key' => $value, 'value' => self::$you_sponsor[$value]];
     else return $value;
@@ -273,7 +296,7 @@ class User extends Authenticatable
 
   public function getRelationshipGoalSlugAttribute()
   {
-    $value=$this->relationship_goal;
+    $value = $this->relationship_goal;
     if ($value !== null)
       return ['key' => $value, 'value' => self::$relationship_goal[$value]];
     else return $value;
@@ -281,7 +304,7 @@ class User extends Authenticatable
 
   public function getYouDrinkSlugAttribute()
   {
-    $value=$this->you_drink;
+    $value = $this->you_drink;
     if ($value !== null)
       return ['key' => $value, 'value' => self::$drink[$value]];
     else return $value;
@@ -289,7 +312,7 @@ class User extends Authenticatable
 
   public function getYouSmokingSlugAttribute()
   {
-    $value=$this->you_smoking;
+    $value = $this->you_smoking;
     if ($value !== null)
       return ['key' => $value, 'value' => self::$smoking[$value]];
     else return $value;

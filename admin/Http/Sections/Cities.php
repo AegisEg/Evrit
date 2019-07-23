@@ -59,7 +59,7 @@ class Cities extends Section implements Initializable
     public function onEdit($id)
     {
         return AdminForm::panel()->addBody([
-            AdminFormElement::text('name', 'Страна')->required(),
+            AdminFormElement::text('name', 'Город')->required(),
         ])->setHtmlAttribute('enctype', 'multipart/form-data');
     }
 

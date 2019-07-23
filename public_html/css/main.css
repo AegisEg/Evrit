@@ -9,6 +9,10 @@
     }
 }
 
+.toggle.btn {
+    width: 150px;
+}
+
 .content {
     min-height: 75vh;
 }
@@ -17,11 +21,28 @@
     cursor: pointer;
 }
 
+.image_list>div>a {
+    height: 190px;
+    display: block;
+    background-size: auto;
+    background-repeat: no-repeat;
+    background-position: 50%;
+}
+
 .form-control.is-invalid,
 .was-validated .form-control:invalid,
 .form-control.is-valid,
 .was-validated .form-control:valid {
     background-position: center left calc(.375em + .1875rem);
+}
+
+.settings_block {
+    background-color: #d2d2d2;
+    border-radius: 10px;
+}
+
+.trouble_send {
+    cursor: pointer;
 }
 
 .invise {
@@ -42,8 +63,12 @@
     background-color: #000000;
 }
 
+#to_favorite a,
+#to_favorite a:hover,
 #add_to_friend a,
-#add_to_friend a:hover {
+#add_to_friend a:hover,
+#del_friend a,
+#del_friend a:hover {
     color: #000;
     cursor: pointer;
     text-decoration: none;
@@ -76,6 +101,7 @@
     top: 5px;
     padding: 5px;
     cursor: pointer;
+    z-index: 2;
 }
 
 #edit_mode img {
@@ -563,6 +589,7 @@ button.dropdown-toggle::after {
 
 #sidebar a {
     color: #000;
+    text-decoration: none;
 }
 
 #sidebar.active {

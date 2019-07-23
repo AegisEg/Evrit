@@ -11,8 +11,10 @@ use App\Model\City;
 use App\Model\Hobby;
 use App\Model\Language;
 use App\Model\Religion;
+use App\Model\Profession;
 use App\Http\Controllers\MessageController;
 use Auth;
+
 class ViewShareServiceProvider extends ServiceProvider
 {
   /**
@@ -55,21 +57,23 @@ class ViewShareServiceProvider extends ServiceProvider
       View::share('list_hobby', Hobby::all());
       View::share('list_language', Language::all());
       View::share('list_religion', Religion::all());
+      View::share('list_profession', Profession::all());
 
       view()->composer('*', function ($view) {
-          if (Auth::check())
-          {
-            $view->with('channels_list', Auth::user()->channels);
-            $view->with('count_unreadble_message', MessageController::unreadble_message());            
-            $view->with('count_friend_request', User::find(Auth::id())->friendListToStatus("request")->count());
-          }
-        });
+        if (Auth::check()) {
+          $view->with('channels_list', Auth::user()->channels);
+          $view->with('count_unreadble_message', MessageController::unreadble_message());
+          $view->with('count_friend_request', User::find(Auth::id())->friendListToStatus("request")->count());
+        }
+      });
       view()->composer('*', function ($view) {
-          if (Auth::check())
-              $view->with('count_guest', User::find(Auth::id())->reviewList(false)->count());
-        });
+        if (Auth::check())
+          $view->with('count_guest', User::find(Auth::id())->reviewList(false)->count());
+      });
     } catch (\Exception $e) {
       return $e->getMessage();
     }
+    \App\User::observe(\App\Observers\User::class);
+    \App\Model\UserImage::observe(\App\Observers\ImageUser::class);
   }
 }

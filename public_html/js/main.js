@@ -40,6 +40,14 @@ $(function() {
         }
         history.replaceState(null, null, newUrl);
     });
+    $('#frined_tabs span[data-toggle="tab"]').on("click", function() {
+        let url = location.href.replace(/\/$/, "");
+        url = url.substring(0, url.indexOf('?'));
+        let newUrl;
+        const hash = $(this).attr("href");
+        newUrl = url + "?" + hash.substring(1);
+        history.replaceState(null, null, newUrl);
+    });
     $(".to_like").click(function() {
         $this = $(this);
         $.ajax({
@@ -98,19 +106,22 @@ $(function() {
     });
     jQuery(".popup-youtube").YouTubePopUp();
     $(".popup-image").fancybox();
-    //    Register form
-    $('.info_pop').popover({
-        container: 'body'
-    });
-    $('.datepicker').on('keypress', function(event) {
+    //    Register form    
+    chengedescription();
+    $('.datepicker-bootstrap').on('keypress', function(event) {
         event.preventDefault();
     })
+    var date = new Date();
     $('.datepicker').datepicker({
-        language: 'he'
+        language: 'he',
+        changeYear: true,
+        container: ".datepicker_container",
+        startDate: "-80y",
+        endDate: "-18y",
     });
     $('select').selectpicker();
     //Переключатель при регистрации
-    $('#gender').change(function() {
+    $('.register_form  #gender').change(function() {
         $prop = ($(this).prop('checked') ? 1 : 0);
         $val0 = $("#soc_status").attr('data' + $prop + '-off');
         $val1 = $("#soc_status").attr('data' + $prop + '-on');
@@ -119,7 +130,14 @@ $(function() {
             on: $val1,
             off: $val0
         });
+        chengedescription();
     });
+
+    function chengedescription() {
+        $('.info_pop').attr('data-content', $('.info_pop').attr('data-content' + ($('.register_form  #gender').prop('checked') ? 0 : 1)));
+        $('.info_pop').popover('update');
+
+    }
     // валидация форм
     var forms = document.getElementsByClassName('form_validate');
     var validation = Array.prototype.filter.call(forms, function(form) {
@@ -216,7 +234,7 @@ $(function() {
             });
         }
     });
-    ///Chat Script    
+    ///Chat Script
     $('.contacts>.tabs_chat').click(function() {
         $this = $(this);
         $('.contacts>.tabs_chat').removeClass('active');
@@ -227,6 +245,7 @@ $(function() {
         tabs = tabs.find(".msg_card_body");
         var height = tabs.prop("scrollHeight");
         tabs.animate({ "scrollTop": height }, 'slow');
+        //Изменение url
         let url = location.href.replace(/\/$/, "");
         url = url.substring(0, url.indexOf('?'));
         let newUrl;

@@ -68,10 +68,17 @@ class LanguagesTableSeeder extends Seeder
             ),
             7 => 
             array (
-                'id' => 8,
-                'name' => 'Другое',
-                'created_at' => NULL,
-                'updated_at' => NULL,
+                'id' => 9,
+                'name' => 'Другой',
+                'created_at' => '2019-07-04 16:48:00',
+                'updated_at' => '2019-07-04 16:48:00',
+            ),
+            8 => 
+            array (
+                'id' => 10,
+                'name' => 'Украинский',
+                'created_at' => '2019-07-04 16:48:18',
+                'updated_at' => '2019-07-04 16:48:18',
             ),
         ));
         

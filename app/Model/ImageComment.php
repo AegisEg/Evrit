@@ -20,4 +20,9 @@ class ImageComment extends Model
   {
     return CarbonImmutable::parse($value)->calendar();
   }
+
+  public function scopeWithImage($query, $id)
+  {
+    $query->where('img_id', $id);
+  }
 }

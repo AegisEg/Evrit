@@ -48,7 +48,7 @@
                         <label for="amount">Ник:</label>
                         <input type="text" class="form-control" value="{{$data->name}}" name="name">
                     </label>
-                    <label class="col-md-6 col-12  my-3">
+                    <label class="datepicker_container col-md-6 col-12  my-3">
                         <span>
                             Дата рождения
                         </span>

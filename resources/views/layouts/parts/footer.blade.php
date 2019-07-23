@@ -4,12 +4,9 @@
             <div class="col-md-8 col-12 text-center text-md-right">
                 <h3 class="title">Быстрые ссылки</h3>
                 <ul class="row w-50 mx-auto mr-md-0 footer_menu">
-                    <li class="col-6"><a href="https://sugardaddy.co.il/content/view/about" data-pjax="0">אודות שוגר דדי</a></li>
-                    <li class="col-6"><a href="https://sugardaddy.co.il/content/view/how_it_works" data-pjax="0">איך זה עובד?</a></li>
-                    <li class="col-6"><a href="https://sugardaddy.co.il/users/registration">הרשמה חינם</a></li>
-                    <li class="col-6"><a href="https://sugardaddy.co.il/content/view/terms">תקנון</a></li>
-                    <li class="col-6"><a href="https://sugardaddy.co.il/tickets/index">ביטול מנוי</a></li>
-                    <li class="col-6"><a href="https://sugardaddy.co.il/tickets/index">צור קשר</a></li>
+                    <li class="col-6"><a href="{{route('about_us')}}" data-pjax="0">О нас</a></li>
+                    <li class="col-6"><a href="{{route('rule')}}" data-pjax="0">Правила сайта</a></li>
+                    <li class="col-6"><a href="{{route('register')}}">Регистрания</a></li>
                 </ul>
             </div>
             <div class="col-md-4 col-12 text-center">
@@ -23,22 +20,33 @@
         </div>
     </div>
 </footer>
-@if(isset($_GET['post_register']))
+@if(old('success_register_post'))
 @include('layouts.modal.register_post')
 @endif
-@if(isset($_GET['reset_emails']))
+@if(old('success_trouble_success'))
+@include('layouts.modal.trouble_success')
+@endif
+@if(old('reset_emails'))
 @include('layouts.modal.reset_emails')
 @endif
-@if(isset($_GET['reset_sucsess']))
+@if(old('reset_sucsess'))
 @include('layouts.modal.reset_sucsess')
 @endif
-@if(isset($_GET['verifi_sucsess']))
+@if(old('verifi_sucsess'))
 @include('layouts.modal.verifi_sucsess')
 @endif
-@if(isset($_GET['verifi_error']))
+@if(old('verifi_error'))
 @include('layouts.modal.verifi_error')
 @endif
+<script>
+    $(document).ready(function() {
+        setTimeout(function() {
+            $(".pop_alert").hide('slow');
+        }, 3000);
+    });
+</script>
 @if(Auth::check())
+@include('profile.widgets.form_trouble')
 @if(Auth::user()->isAdmin())
 <div id="edit_mode">
     <img src="/images/edit_mode.png" alt="">
@@ -50,11 +58,10 @@
         'ws://134.0.113.156:8080',
         function(session) {
             @foreach($channels_list as $channel)
-            session.subscribe('{{$channel->key}}', function(topic, data) {   
-                get_unreadble();             
+            session.subscribe('{{$channel->key}}', function(topic, data) {
+                get_unreadble();
                 $('#chat-' + data.data.id + '>.msg_card_body').append(data.data.text);
-                if($('#chat-' + data.data.id).hasClass('active')&&$('#chat-' + data.data.id).hasClass('show'))
-                {
+                if ($('#chat-' + data.data.id).hasClass('active') && $('#chat-' + data.data.id).hasClass('show')) {
                     read_message('chat-' + data.data.id);
                 }
             });
@@ -70,3 +77,9 @@
     );
 </script>
 @endif
+<?php
+// $tables = DB::select('SHOW TABLES');
+// foreach ($tables as $table) {
+//     echo "," . $table->Tables_in_aega;
+// }
+?>

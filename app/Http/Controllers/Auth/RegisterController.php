@@ -41,7 +41,7 @@ class RegisterController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest');
+        
     }
 
     /**
@@ -79,14 +79,15 @@ class RegisterController extends Controller
 			$user->is_verification = true;
 			$user->confirmation_link = null;
 			$user->save();
-			return redirect()->route('home',['verifi_sucsess'=>"true"]);
+			return redirect()->route('home')->withInput(array('verifi_sucsess' => true));
 		}
-		else return redirect()->route('home',['verifi_error'=>"true"]);
+		else return redirect()->route('home')->withInput(array('verifi_error' => true));
     }
 	
     public function showRegistrationForm()
-    {       
+    {     
         $info['gender']=User::$gender;
+        $info['title']='Регистрация';
         $info['soc_status']=User::$soc_status;
         $info['orientation']=User::$orientation;
         $info['cities']=City::all();
@@ -125,6 +126,6 @@ class RegisterController extends Controller
         \App\Jobs\SendMail::dispatch("emails.registration", $user->email, $user->name, $user->confirmation_link, "", "Подтвердите регистрацию")->onQueue('default');
 
         return $this->registered($request, $user)
-            ?: redirect()->route('home',['post_register'=>"true"]);
+            ?: redirect()->route('home')->withInput(array('success_register_post' => true));
     }
 }

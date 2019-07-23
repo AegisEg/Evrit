@@ -41,7 +41,8 @@ class LoginController extends Controller
     }
     public function showLoginForm()
     {
-        return view('auth.login');
+        $info['title']='Вход';
+        return view('auth.login',$info);
     }
     protected function attemptLogin(Request $request)
     {

@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>EscoBoom</title> 
+        <title>@if(isset($title))  {{$title}} - @endif Escoboom</title> 
         @include("layouts.parts.assets")  
               
     </head>

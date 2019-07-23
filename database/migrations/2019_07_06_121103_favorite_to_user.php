@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateProfileTable extends Migration
+class FavoriteToUser extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,10 @@ class CreateProfileTable extends Migration
      */
     public function up()
     {
-        Schema::create('profile', function (Blueprint $table) {
+        Schema::create('favorite_to_user', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->tinyInteger('user_id');
+            $table->tinyInteger('user2_id');
             $table->timestamps();
         });
     }
@@ -26,6 +28,6 @@ class CreateProfileTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('profile');
+        Schema::dropIfExists('favorite_to_user');
     }
 }

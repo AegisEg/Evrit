@@ -19,8 +19,9 @@
             </span>
             <label class="col-md-6 col-12  my-3 status_check">
                 <input type="checkbox" name="soc_status" id="soc_status" data-width="200" data-height="30" data-toggle="toggle" data-on="{{$soc_status[0][0]}}" data-off="{{$soc_status[0][1]}}" data0-on="{{$soc_status[0][0]}}" data0-off="{{$soc_status[0][1]}}" data1-on="{{$soc_status[1][0]}}" data1-off="{{$soc_status[1][1]}}">
-                <i class="fa fa-question-circle mr-2 info_pop" data-toggle="popover" data-trigger="hover" title="Что это значит?" data-content="Sugar Baby - привлекательная девушка, ищущая отношения с щедрым мужчиной (Sugar Daddy) в обмен на поблажки и подарки. 
-Sugar Mama - щедрая девушка, которая оказывает поддержку и утешение девушке (Sugar Baby) в обмен на дружбу" aria-hidden="true"></i>
+                <i class="fa fa-question-circle mr-2 info_pop" data-toggle="popover" data-trigger="hover" title="Что это значит?" data-content="" data-content0="Sugar Baby - привлекательная девушка, ищущая отношения с щедрым мужчиной (Sugar Daddy) в обмен на поблажки и подарки.
+Sugar Mama - щедрая девушка, которая оказывает поддержку и утешение девушке (Sugar Baby) в обмен на дружбу" data-content1="Sugar Babe - Описание.
+Sugar duddy - Описание" aria-hidden="true"></i>
             </label>
             <span class="col-md-6 col-12  my-3 ">
                 Кто вас интересует?
@@ -41,14 +42,14 @@ Sugar Mama - щедрая девушка, которая оказывает по
             <span class="col-md-6 col-12  my-3 ">
                 Дата рождения
             </span>
-            <label class="col-md-6 col-12  my-3">
+            <label class="col-md-6 col-12  my-3 datepicker_container">
                 <input type="text" class="form-control datepicker text-right" placeholder="**/**/**" required name="birthday">
             </label>
             <span class="col-md-6 col-12  my-3 ">
                 Ник
             </span>
             <label class="col-md-6 col-12  my-3">
-                <input type="text" class="form-control" name="name" placeholder="Ник"  required>
+                <input type="text" class="form-control" name="name" placeholder="Ник" required>
             </label>
             <span class="col-md-6 col-12  my-3 ">
                 Email
@@ -72,7 +73,7 @@ Sugar Mama - щедрая девушка, которая оказывает по
                 Город
             </span>
             <label class="col-md-6 col-12  my-3">
-                <select class="selectpicker" data-live-search="true" name="city_id"  title="Выберете город.." required>
+                <select class="selectpicker" data-live-search="true" name="city_id" title="Выберете город.." required>
                     @foreach($cities as $city)
                     <option value="{{$city->id}}">{{$city->name}}</option>
                     @endforeach

@@ -31,6 +31,13 @@ class ProfessionsTableSeeder extends Seeder
                 'created_at' => NULL,
                 'updated_at' => NULL,
             ),
+            2 => 
+            array (
+                'id' => 3,
+                'name' => 'Проктолог',
+                'created_at' => '2019-07-04 16:10:55',
+                'updated_at' => '2019-07-04 16:10:55',
+            ),
         ));
         
         
