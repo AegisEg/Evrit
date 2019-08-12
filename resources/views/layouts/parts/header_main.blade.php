@@ -63,12 +63,12 @@
             <nav class="col-12 col-md-4 row mx-0 my-4 my-md-0 text-center text-md-right menu align-items-center order-1 order-md-1">
                 <div class="position-relative mx-auto mx-md-3">
                     <a href="{{route('rule')}}" class="stretched-link py-2">
-                        Правила сайта
+                        {{ _t("Правила сайта")}}
                     </a>
                 </div>
                 <div class="position-relative mx-auto mx-md-3">
                     <a href="{{route('about_us')}}" class="stretched-link py-2">
-                        Как это работает?
+                    {{ _t("Как это работает?")}}
                     </a>
                 </div>
             </nav>

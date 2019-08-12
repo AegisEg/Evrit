@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use Carbon\Carbon;
+use Stevebauman\Translation\Contracts\Translation;
 
 class HomeController extends Controller
 {
@@ -13,8 +14,11 @@ class HomeController extends Controller
      *
      * @return void
      */
-    public function __construct()
-    { }
+    protected $translation;
+    public function __construct(Translation $translation)
+    {
+        $this->translation = $translation;
+    }
 
     /**
      * Show the application dashboard.
@@ -23,22 +27,23 @@ class HomeController extends Controller
      */
     public function index()
     {
+        // dd($this->translation->translate('Блог'));
         $info['users'] = User::all();
         if ($info['users']->count() >= 8)
             $info['users'] = $info['users']->random(8);
         else
             $info['users']->random($info['users']->count());
-        return view('index',$info);
+        return view('index', $info);
     }
     public function about()
     {
-        $info['title']="О нас";
-        return view('pages.about',$info);
+        $info['title'] = "О нас";
+        return view('pages.about', $info);
     }
     public function rule()
     {
-        $info['title']="Правила сайта";
-        return view('pages.rule',$info);
+        $info['title'] = "Правила сайта";
+        return view('pages.rule', $info);
     }
     public function search(Request $request)
     {
@@ -58,7 +63,7 @@ class HomeController extends Controller
             $profiles = $profiles->where('city_id', $city);
         }
         if ($soc_status !== null) {
-            $profiles = $profiles->where('soc_status', (int)$soc_status);
+            $profiles = $profiles->where('soc_status', (int) $soc_status);
         }
         if ($start_age && $last_age) {
             $profiles = $profiles->where('birthday', '>', Carbon::now()->subYears($last_age))->where('birthday', '<', Carbon::now()->subYears($start_age));
@@ -75,12 +80,12 @@ class HomeController extends Controller
             $profiles = $profiles->sortBy('created_at');
         } else
         if ($sortby == 'popular') {
-            $profiles=$profiles->sortBy(function ($profile, $key) {
-                $count_likes=0;
-                foreach($profile->gallery as $image)
-                    $count_likes+=$image->user_likes->count();                    
-                return count($profile->friendListToStatus("friend")->get())+$count_likes;
-              });
+            $profiles = $profiles->sortBy(function ($profile, $key) {
+                $count_likes = 0;
+                foreach ($profile->gallery as $image)
+                    $count_likes += $image->user_likes->count();
+                return count($profile->friendListToStatus("friend")->get()) + $count_likes;
+            });
         }
         $count = $profiles->count();
         $profiles = $profiles->forPage($page, 12);
@@ -101,7 +106,7 @@ class HomeController extends Controller
     }
     public function search_page()
     {
-		$info['title'] = "Поиск";
+        $info['title'] = "Поиск";
         $info['users'] = User::where('is_verification', '1')->get();
         $info['count'] = $info['users']->count();
         $info['users'] = $info['users']->forPage(1, 12);

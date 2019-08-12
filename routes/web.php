@@ -10,9 +10,10 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/', 'HomeController@index')->name('home');
-
+Route::group(['prefix' => Translation::getRoutePrefix(), 'middleware' => ['locale']], function()
+{
+    Route::get('/', 'HomeController@index')->name('home');
+});
 Auth::routes();
 Route::get('/logout', 'Auth\LoginController@logout')->name('logout_get');
 
@@ -57,3 +58,21 @@ Route::post('/send-message', 'MessageController@send_message')->name('send_messa
 Route::post('/сreate-chanel', 'MessageController@send_message')->name('сreate_chanel');
 Route::post('/count-message', 'MessageController@unreadble_message')->name('unreadble_message');
 Route::post('/read-message', 'MessageController@read_message')->name('read_message');
+//RSSLOAD
+Route::get('/xmltestrss', function()
+{
+return response()->view('xml')->withHeaders([
+            'Content-Type' => 'text/xml'
+        ]);
+});
+
+Route::get('/testapi', function()
+{
+return '[{"id":"1","text":"Любовь в браке сохраняется до тех пор, пока муж и жена продолжают интересоваться мыслями друг друга.","autor":"Ричард Бах","category":"1"},{"id":"2","text":"Если вы хотите иметь то, что никогда не имели, вам придётся делать то, что никогда не делали.","autor":"Коко Шанель","category":"2"},{"id":"3","text":"Любовь, макароны, помидоры, огурцы, я тебя люблю, а ты отсоси.","autor":null,"category":"1"}]';
+});
+
+Route::get('/testapi-item', function()
+{
+return '{"id":"1","text":"Любовь в браке сохраняется до тех пор, пока муж и жена продолжают интересоваться мыслями друг друга.","autor":"Ричард Бах","category":"1"}';
+});
+

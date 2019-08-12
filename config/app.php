@@ -80,7 +80,7 @@ return [
     |
     */
 
-    'locale' => 'he',
+    'locale' => 'ru',
 
     /*
     |--------------------------------------------------------------------------
@@ -93,7 +93,7 @@ return [
     |
     */
 
-    'fallback_locale' => 'en',
+    'fallback_locale' => 'ru',
 
     /*
     |--------------------------------------------------------------------------
@@ -106,7 +106,7 @@ return [
     |
     */
 
-    'faker_locale' => 'en_US',
+    'faker_locale' => 'ru_RU',
 
     /*
     |--------------------------------------------------------------------------
@@ -176,9 +176,14 @@ return [
         App\Providers\RouteServiceProvider::class,
         //Новые провайдеры
         SleepingOwl\Admin\Providers\SleepingOwlServiceProvider::class,
+        //Админка
         Admin\Providers\AdminSectionsServiceProvider::class,
+        //AutoSeeder
         Orangehill\Iseed\IseedServiceProvider::class,
+        //Глобальные переменные view
         App\Providers\ViewShareServiceProvider::class,
+        //Google Translate
+        'Stevebauman\Translation\TranslationServiceProvider',
 
     ],
 
@@ -230,7 +235,7 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
-
+        'Translation' => 'Stevebauman\Translation\Facades\Translation',
     ],
 
 ];
